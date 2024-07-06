@@ -7,7 +7,7 @@ Un-Test build folder contains the original UCS and the non-dev version of the Co
 
 ---- Update 06/07/2024 -----
 
-The repo nwo has the latest 1.8.2 of the Injector, and Kharos' new launcher has now been set up to run with Elite. For the Launcher I have created an Elite.exe and an Elite_Dev.exe, to run Live and Test configurations respectively and independently.
+The repo now has the latest 1.8.2 of the Injector, and Kharos' new launcher has now been set up to run with Elite. For the Launcher I have created an Elite.exe and an Elite_Dev.exe, to run Live and Test configurations respectively and independently.
 
 ![image](https://github.com/arthur-clouds/elite-mod-2.9.12/assets/37910554/f1f11ea7-914d-4168-bcba-3af06dd94b9d)
 
