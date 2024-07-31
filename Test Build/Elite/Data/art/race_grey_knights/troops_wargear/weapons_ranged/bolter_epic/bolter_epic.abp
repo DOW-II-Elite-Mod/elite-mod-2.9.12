@@ -1,0 +1,10 @@
+--[[Auto-generated from Toaster]]
+model =
+{
+    "bolter_epic",
+    "Bolter_Common_rubble",
+}
+simvis_attributes =
+{
+    object_scar = 0
+}
