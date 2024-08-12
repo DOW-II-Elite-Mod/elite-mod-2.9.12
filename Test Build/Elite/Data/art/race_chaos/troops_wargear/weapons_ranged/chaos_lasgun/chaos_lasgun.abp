@@ -1,0 +1,9 @@
+--[[Auto-generated from Toaster]]
+model =
+{
+    "chaos_lasgun",
+}
+simvis_attributes =
+{
+    object_scar = 0
+}
