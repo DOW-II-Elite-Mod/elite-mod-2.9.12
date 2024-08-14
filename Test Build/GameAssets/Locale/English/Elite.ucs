@@ -7,7 +7,7 @@
 10000006	These runes reduce the cooldown of all the Farseer's spells by 25% and increase energy regeneration by 1 E/s.
 10000007	The Guardians receive Plasma Grenades, deployable energy shields and Fleet of Foot ability. Increases the squad's maximum health by 21%.
 10000008	The Lord Commissar's presence inspires his men. Allied infantry in a radius of 20 are healed for 14/11/8/5% percent of their health every 10 seconds when the Commissar is surrounded by 1/10/20/30 infantry models.
-10000009	Grants the Inspire Determination ability, which renders the targeted squad immune to suppression and healing the remaining men to full health, increasing the squad's speed by 2.5 and increasing its damage output by 100%. Also increases the maximum energy of the Commissar by 50.
+10000009	Grants the Inspire Determination ability, which renders the targeted squad immune to suppression and healing the remaining men to full health, increasing the squad's speed by 2.5 and increasing its damage output by 100%. Also increases the Commissar's health by 150.
 10000010	Equip the squad with Hot-shot Volleyguns (Range 45// 18 piercing DPS). 
 10000011	Reinforces squads around your hero for 5 seconds and increases the speed and damage of all your squads for 20 seconds. The Squad loses the Ability to infiltrate. Increases the squads hp by 20%.
 10000012	Lower the cooldown duration of ranged weapons by 50% and reload duration of ranged weapons by 50%. Increases damage of rokkits and stikkbombs by 25%.
@@ -57,7 +57,7 @@
 10000056	Have the boyz proper roast a building, burning garrisoned infantry while taking 30% less ranged damage and ignoring suppression.
 10000057	Cast a psychic attack that damages and suppresses enemy infantry within a radius 10 over 8 seconds.
 10000058	Warlock
-10000059	A Warlock is sent to lead the squad. Enables the Embolden ability and passively lowers the squad's received ranged damage by 20% while on the field, and 5% while in retreat. The Warlock also has keen sight of 15.
+10000059	A Warlock is sent to lead the squad. Enables the Embolden ability and passively lowers the squad's received ranged damage by 20% while on the field, and 5% while in retreat. The Warlock also has keen sight of R 15.
 10000060	Limit 3
 10000061	Build one at a time
 10000062	Chaos Terminators
@@ -162,7 +162,7 @@
 10000162	Shooty Tank
 10000163	Looted us dis here humie tank! Can put on more bitz to make it 'arder and blast pansies wit' da Boomshot. Gots a Big Kannon (23.88 explosive DPS, 160 DPH in radius 5) and two Shootas (22.67 piercing DPS).
 10000164	Da Waaagh Wagon
-10000165	Get in da Wagon boyz, we're going to Waaagh! More gitz in da Wagon pushes it fasta and gets da Shootas shootin. Gots a big Zzap Gun (21.67 melta DPS, 130 DPH in radius 5) and lotsa dakka (5 x 26.67 piercing DPS).
+10000165	Get in da Wagon boyz, we're going to Waaagh! More gitz in da Wagon pushes it fasta and gets da Shootas shootin. Gots a big Zzap Gun (21.67 melta DPS, 130 DPH in radius 5) and lotsa dakka (4 x 26.67 piercing DPS).
 10000166	Very Choppy Infantry
 10000167	Dese boyz gonna stomp all dem gits real gud! Waaagh! Gots Huge Choppas (33.33 heavy melee DPS)
 10000168	Very Fast Trukk
@@ -232,12 +232,12 @@
 10000232	Call a blinding Smoke Shell to the target location, decreasing the sight radius and weapon range of affected units by 50% for 10 seconds in radius 10. Cooldown 40 seconds.
 10000233	Infestation
 10000234	Spawn a Capillary Tower that grants nearby non-vehicle armor Tyranid units 25% suppression resistance, 10% increased melee damage, and 25% increased sight radius. Tyranids not in combat also gain +1 speed.
-10000235	The General commands nearby troops with defensive orders, decreasing incoming ranged damage by 30% and granting complete immunity to knockback.
+10000235	The General commands nearby troops with defensive orders, decreasing incoming ranged damage by 30% and granting immunity to weapon knockback.
 10000236	Targeted friendly squad member is killed. Squad gains 100% increased damage for 15 seconds. Breaks retreat and the target squad cannot be retreated for 10 seconds. Grants the Lord Commissar 15% increased damage for 15 seconds and breaks his suppression if he is currently suppressed at the start of an execution.
 10000237	Increases the health of the Commissar by 200 and his health regeneration by 2.5 HP/s and reduces the energy cost and cooldown of Inspire Courage to 25 and 5 respectively. Grants the Lord Commissar 15% increased damage for 15 seconds and breaks his suppression if he is currently suppressed at the start of an execution.
 10000238	An Exarch with 375 hp is sent to lead the squad. Exarch is equipped with a specialised launcher that can swap between anti-infantry and anti-everything missiles.Grants the squad access to “Tempest Missile Barrage” ability and increases their sight range by 10
 10000239	Servo Skull
-10000240	An Inquisitorial Servo Skull will follow the Inquisitor. Increases the Inquisitor's sight radius by 15 and unlocks the Auspex Scan ability. While the Servo Skull is equipped, the Inquisitor will reveal each target she hits in range combat for 15 seconds.
+10000240	An Inquisitorial Servo Skull will follow the Inquisitor. Increases the Inquisitor's sight radius by 10 and gains keen sight of radius 30. While the Servo Skull is equipped, the Inquisitor will reveal each target she hits in melee for 20 seconds.
 10000241	Summon a Servo Skull
 10000242	Incendiary Shell
 10000243	Call an Incendiary Shell to the target location, burning enemy units over time. Deals 20 flame damage followed by 10 ability flame DPS for 10 seconds in radius 10. Cooldown 40 seconds. Shares cooldown with Mortar Shell.
@@ -254,7 +254,7 @@
 10000254	A legendary Zoanthrope mutation that drains the life force of its enemies. Capable of casting powerful abilities. 9.38 psychic DPS with splash damage in radius 7 and leeches 20 HP on each hit to heal the Neurothrope.
 10000255	Inquisitorial Storm Troopers
 10000256	Ranged light infantry armed with Lasguns (7.5 piercing DPS, 7.5 melee DPS). Can be upgraded with Plasma Guns. Can also be upgraded with a Sergeant and an Acolyte leader improving squad survivability.
-10000257	A Sergeant joins the squad as a die last model, increases storm trooper health by 15% and grants the Impact Grenade ability. 12 piercing DPS, 15 melee DPS.
+10000257	A Sergeant joins the squad as a die last model, increases storm trooper health by 10% and grants the Impact Grenade ability. 12 piercing DPS, 15 melee DPS.
 10000258	Strike Squad
 10000259	A backbone infantry unit, the Strike Squad can be upgraded to use offensive psychic powers. Armed with Nemesis Force Halberds and Storm Bolters. 30.95 melee DPS, 9.6 piercing DPS.
 10000260	Elite Infantry
@@ -294,15 +294,15 @@
 10000294	Hammerhand
 10000295	Increase the Librarian's melee skill by 30 and melee damage by 15% for 10 seconds.
 10000296	Shrouding
-10000297	Hide an allied infantry unit, making it infiltrate for 25 seconds. Also increases the unit's damage by 25% for the duration.
+10000297	Hide an allied infantry unit, making it infiltrate for 25 seconds. Also increases the unit's damage by 15% for the duration.
 10000298	Canticle of Absolution
 10000299	Allied infantry receive an 8 E/s increase to their energy regeneration and 6 HP/s to their health regeneration. 35 meter radius, 20 second duration.
 10000300	Justicar
-10000301	The Justicar is a highly capable melee fighter. Passively increases the squad's HP by 15%, health regen by 0.5 HP/s, speed by 0.5 and strengthens the Banishment ability. Armed with Nemesis Force Sword (38.46 power melee DPS) and Storm Bolter (12.25 piercing DPS)
+10000301	The Justicar is a highly capable melee fighter. Passively increases the squad's HP by 15%, speed by 0.5 and strengthens the Banishment ability. Armed with Nemesis Force Sword (38.46 power melee DPS) and Storm Bolter (12.25 piercing DPS)
 10000302	Incinerator
 10000303	Equips the squad with an Incinerator, a Flamer-type weapon effective against infantry in cover or garrison. 4.02 flame DPS and 12 melee DPS.
 10000304	We are the Hammer
-10000305	Inspire allied infantry within radius 25 for 15 seconds, increasing speed by 0.25 and reducing received damage by 15%. The Brother Captain deals an additional 3 power melee splash damage per hit in radius 5.
+10000305	Inspire allied infantry within radius 25 for 15 seconds, increasing speed by 0.25 and reducing received damage by 10%. The Brother Captain deals an additional 3 power melee splash damage per hit in radius 5.
 10000306	The Justicar is a potent fighter armed with Nemesis Force Sword (38.46 power melee DPS) and Storm Bolter (9.09 piercing DPS). Grants the ability to throw a Psyk-out Grenade.
 10000307	The Justicar is a powerful fighter who wields a Nemesis Daemonhammer (45 heavy melee DPS) and Storm Bolter (9.09 piercing DPS). Also increases the squad's charge range by 3 and grants +1 HP/s combat regen.
 10000308	Increases the Rhino's maximum health points by 200 if not equipped with twin-linked Lascannon. If equipped with twin-linked Lascannon, and its weapon damage by 25%.
@@ -333,7 +333,7 @@
 10000333	Equip a heavy Plasma Cannon (14.63 plasma cannon DPS 120 DPH) and a Hurricane Bolter (51.94 piercing DPS), becoming a ranged fire support platform. Dreadnought loses all melee prowess and resistance but can still be tied up.
 10000334	Teleport in a Paladin Squad to the targeted location. Paladins are special Terminators that can upgrade to have the Holy Ground ability, increasing speed of allies and decreasing speed of enemies. Armed with Nemesis Force Hammers (66.67 heavy melee DPS) and Storm Bolters (26.15 piercing DPS).
 10000335	Codicum Aeternum
-10000336	Increases energy by 50, energy regen by 1 E/s and unlocks the Shrouding ability which can infiltrate a targeted squad.
+10000336	Increases energy by 50, energy regen by 0.5 E/s and unlocks the Shrouding ability which can infiltrate a targeted squad.
 10000337	Liber Daemonica
 10000338	Increases health by 150, health regen by 2.5 HP/s and unlocks the Might of Titan ability which strengthens nearby allies.
 10000339	Land Raider Crusader purchase from HQ
@@ -345,8 +345,8 @@
 10000345	Cloud the minds of all enemy units in a radius 30, forcing them into silence and preventing the use of any abilities for 15 seconds.
 10000346	Nemesis Focus
 10000347	Increases the weapon range by 8 and ranged damage by 65% (17.35 piercing DPS) while reducing charge range from 12 to 0.
-10000348	Inspire allied infantry within radius 25 for 15 seconds, increasing speed by 0.5 and reducing received damage by 25%. The Brother Captain deals an additional 3 power melee splash damage per hit in radius 5.
-10000349	Grants the Defend ability which makes nearby allies immune to suppression, 50% resistant to ranged damage, but have their speed reduced by 35%. Also increases the Force Commander's health by 100 and reduces the Force Commander's received ranged damage by 20%. 45.38 melee DPS.
+10000348	Inspire allied infantry within radius 25 for 15 seconds, increasing speed by 0.5 and reducing received damage by 20%. The Brother Captain deals an additional 3 power melee splash damage per hit in radius 5.
+10000349	Grants the Defend ability which makes nearby allies immune to suppression, 50% resistant to ranged damage, but have their speed reduced by 35%. Also reduces the Force Commander's received ranged damage by 20%. 45.38 melee DPS.
 10000350	Grants 50% resistance against ranged fire and suppression immunity to the Force Commander and allies in radius 22. Affected units move 35% more slowly. Doesn't affect retreating units.
 10000351	Engage in a duel of minds. Causes 40 heavy melee damage and 100 courage damage to the target each second for 6 seconds.
 10000352	Lift enemies around the Farseer into the air, incapacitating them for 6.5 seconds before hurling them aside, doing ability knockback and 50 power melee damage. The Farseer takes 40% less damage and can't be knocked back during the action but cannot retreat before the action completes.
@@ -372,7 +372,7 @@
 10000372	Throw a grenade which deals 250 melta damage to vehicles and monstrous creatures.
 10000373	Psyk-Out Grenade
 10000374	Throw a special grenade loaded with negative psychic energy, burning away 40 energy from units caught in the blast radius while suppressing infantry.
-10000375	Causes melee attacks to drain 3 energy on hit. Also grants the Incinerate ability, which lifts enemy infantry in a targed area.
+10000375	Causes melee attacks to drain 3 energy on hit. Also grants the Telekinesis ability, which lifts enemy infantry in a targed area.
 10000376	Increase the squad's melee damage by 25% for 15 seconds.
 10000377	Nemesis Vortex
 10000378	Summon a controllable vortex of psychic energy. After 4 seconds the vortex explodes, stunning and knocking back nearby units.
@@ -399,11 +399,11 @@
 10000399	Increase a target infantry unit's damage by 30%, their damage resistance by 15% and render them immune to suppression for 15 seconds.
 10000400	Load Vengeance Rounds and increase Heavy Bolter damage 357.04 suppression DPS and deal 53.56 DPS to vehicle armor but loses all suppression for 15 s.
 10000401	Call down three off map Basilisk artillery shots that do up to 150 Manticore rocket damage and weapon knockback in radius 10. Cooldown 90 seconds.
-10000402	Gain control of an enemy non-commander infantry unit for 10 seconds. The Sorcerer is immobile during the effect but gains 20% damage resistance while channeling. The mind-controlled unit is immune to damage, has its damage increased by 25% and speed decreased by 1.
+10000402	Gain control of an enemy non-commander infantry unit for 10 seconds. The Sorcerer is immobile during the effect but gains 20% damage resistance while channeling. The mind-controlled unit is immune to damage, has its damage increased by 25% and speed decreased by 1.5.
 10000403	Psycannon
 10000404	Dirge Caster
 10000405	Infantry units within radius 32 of the Land Raider are stunned for 5 seconds and suffer a -15% damage penalty for 15 seconds.
-10000406	Increases the brood's health by 65%, melee skill by 10, and upgrades melee attack (30 heavy melee DPS). Reinforcement cost is increased by 15/3. Nearby melee Tyranids have their health increased by 40% and melee skill by 10. Cannot be purchased alongside Deathspitters.
+10000406	Increases the brood's health by 65%, melee skill by 10, and upgrades melee attack (30 heavy melee DPS). Reinforcement cost is increased by 15/3. Nearby melee Tyranids have their health increased by 40% and melee skill by 10. Cannot be purchased alongside Thorax Swarm.
 10000407	Nearby allied Termagant and Ravener broods receive 35% improved ranged damage and 25% improved health. The damage bonus is increased to 36%/37%/38% at level 2/3/4.
 10000408	Endless Swarm
 10000409	Expand brood
@@ -467,7 +467,7 @@
 10000467	Throw a gas grenade dealing 65 grenade damage in a radius of 7.5 and a further 5 flame DPS for 10 seconds to infantry in the same area. The gas infects infantry with a plague that inflicts 5 flame DPS for 10 seconds and spreads to allied infantry within radius 8 while in effect.
 10000468	Send the Dreadnought into an uncontrolled rage, attacking any nearby unit (friend or foe) with increased strength and speed. Increases damage by 30% and speed by 2.5 while decreasing received damage by 50%, weapon cooldown by 50% and weapon reload time by 40%.
 10000469	Equips a Big Shoota with improved damage and range. 41 range, 37.8 piercing DPS, 10 melee DPS.
-10000470	Equip an enhanced Kustom Shoota. Effective against infantry and grants the Shoot 'em Good ability. 38 range, 33.33 piercing DPS, 42.5 melee DPS.
+10000470	Equip an enhanced Kustom Shoota. Effective against infantry and grants the Shoot 'em Good ability. 33 range, 33.33 piercing DPS, 42.5 melee DPS.
 10000471	Increases health by 200, health regen by 0.5, and upgrades the Stomp ability to Big Stomp, which damages and stuns surrounding enemy infantry.
 10000472	Perform a larger stomp that deals 50 explosive damage, weapon knockback and a 7 second stun effect to enemy infantry in radius 10.
 10000473	Detonates a 'uge bomb right where yer standing. After a 2 second delay the bomb goes off, doing 115 explosive damage and ability knockback to everything in radius 10. The Kommando takes no damage but is sent flying (unless he has the Mega Boom Kit armor).
@@ -525,7 +525,7 @@
 10000525	Increases ranged damage by 30% and health by 10%. Also grants the Crippling Poison ability.
 10000526	Revive all incapacitated allied heroes at their own HQ.
 10000527	Mines detonate when enemies approach, causing 25 explosive damage, suppression, and weapon knockback in a radius of 7. The explosion slows affected infantry by 90% and vehicles by 70% for 15 seconds.
-10000528	Increase an allied infantry unit's movement speed by 2 and remove set-up/tear-down time from their heavy weapons for 30 seconds.
+10000528	Increase an allied infantry unit's movement speed by 2 and remove set-up/tear-down time from their heavy weapons for 25 seconds.
 10000529	Heal a targeted infantry unit for 110/125/140/155/170/185/200/215/230/245 HP per model (effect improves every level the Apothecary gains). Models with commander armor are healed for 150/200/250/300/350//450/500/550/600 HP. Also revives incapacitated heroes.
 10000530	The General recites a prayer for his troops, increasing the health regeneration of nearby friendly infantry by 1.5 HP/s for 20 seconds in a radius of 30.
 10000531	Xenos Power Claw
@@ -557,14 +557,14 @@
 10000557	Continuously burn an area, slowing down enemy non-vehicle units by 50%, and disabling charge speed bonuses for 8 seconds while dealing 1.5 flame AoE ability DPS in a radius of 15. Slowing effects stick on individual models for 2 seconds.
 10000558	Equips four Grenade Launchers that are effective against groups of enemies and enemies in buildings. 7.02 grenade launcher DPS (up to 45 DMG per grenade in radius 3). Grants the Grenade Barrage ability.
 10000559	Customized Storm Bolter
-10000560	Special Storm Bolter modified for two-handed use. Effective against infantry. Grants the Full Auto ability which stuns enemies. 32.08 piercing DPS, 19 melee DPS.
+10000560	Special Storm Bolter modified for two-handed use. Effective against infantry. Grants the Full Auto ability which stuns enemies. The Apothecary retains his melee skill but loses special attacks and melee charge. 32.08 piercing DPS, 25.38 melee DPS.
 10000561	Spawns a Ripper Swarm at your HQ.
 10000562	Emit a protective cloud that hinders ranged fire, granting nearby allied units suppression immunity and 80% resistance to ranged damage, but decreasing their own ranged damage by 80% as well. Affected enemy units take 5 piercing DPS and suffer a 50% speed penalty. Radius 20, duration 25 seconds.
 10000563	Cameleoline Stealth Suit
 10000564	Adaptive optical camouflage allows the Vindicare Assassin to passively infiltrate when in cover, and remain infiltrated for 2 seconds after leaving cover.
 10000565	Improves the Librarian's health by 100 and energy regeneration by 1 E/s, and grants the Gate of Infinity ability.
 10000566	Passively deals 6 piercing damage in radius 3 when the Warboss is hit in melee. Increases health by 250 and health regeneration by 2 HP/s.
-10000567	The Nob squad breaks suppression, renders the squad immune to courage damage, lowers all incoming damage by 75% and increases their damage by 20% for 8 seconds.
+10000567	The Nob squad breaks suppression, renders the squad immune to courage damage, lowers all incoming damage by 75% and increases their damage by 20% for 10 seconds.
 10000568	Fire an off-map basilisk flare at the targeted location. Reveals the area and detects infiltrated units in radius 35, and shortens the range of enemy weapons by 50% for 14 seconds. Does not effect weapons with indirect fire.
 10000569	Load Frag Missiles, which are effective against infantry. Fires a burst of 4 ballistic missiles, each doing up to 65 grenade launcher damage in radius 7. Up to 26 grenade launcher DPS.
 10000570	Load Krak Missiles, which are effective against vehicles. Fires a single guided missile doing up to 150 explosive damage in radius 1.2. Up to 37.5 explosive DPS.
@@ -590,7 +590,7 @@
 10000590	Enemies slain with this foul blade will linger as undead puppets of the Plague Champion. 50 power melee DPS and 13 plasma DPS. Also increases the Champion's health by 70 and melee skill by 10. Damage done by this weapon ignores Melee Resistance.
 10000591	Throw a grenade with no timer. Deals up to 50 grenade shot damage and knockback in radius 6. Does 3x damage to units in buildings.
 10000592	Psybolt Ammunition
-10000593	Incinerate
+10000593	Telekinesis
 10000594	The Terminators levitate enemy infantry in a radius of 10 for 2 seconds with ability knockback. Does not affect retreating units or superheavy elites such as Terminators.
 10000595	Holy Ground
 10000596	For 30 seconds, marks an area of radius 30 as holy ground, through which only the pure may pass freely. Allied infantry units are invigorated, increasing their movement speed by 1.5, while enemies struggle, decreasing their speed by 1.5.
@@ -608,7 +608,7 @@
 10000608	Loose 4 orbs of empyreal flame at a target area. These orbs detonate on impact, dealing 30 flame DMG and weapon knockback to all caught in the area, and leave smoldering residue that deals 3 flame DPS for 12 seconds.
 10000609	Strike out at all nearby enemies, doing 20 melee damage and weapon knockback in radius 5. The Chaos Lord drains the life force of his victims, healing himself for 75 health per model he hits.
 10000610	Send the Heretics into an unholy veneration of the Dark Gods. Owned units in a radius 35 become infiltrated and gain a 20% damage resistance. Nearby Daemons receive 10 HP/s health regeneration and regenerate 1.5 energy per second. Heretics are immobile while worshipping.
-10000611	Send the Heretics into an unholy veneration of the Dark Gods. Owned units in a radius 35 regenerate health 35 HP every 5 seconds. Nearby Daemons receive 11.75 HP/s health regeneration and regenerate 1.5 energy per second. Heretics are immobile while worshipping.
+10000611	Send the Heretics into an unholy veneration of the Dark Gods. Owned units in a radius 35 regenerate health 3 HP every 5 seconds. Nearby Daemons receive 11.75 HP/s health regeneration and regenerate 1.5 energy per second. Heretics are immobile while worshipping.
 10000612	Send the Heretics into an unholy veneration of the Dark Gods. Owned units in a radius 35 have their speed increased by 1.75. Nearby Daemons receive 10 HP/s health regeneration and regenerate 1.5 energy per second. Heretics are immobile while worshipping.
 10000613	Ignites an area in flames for 15 seconds, dealing 12 ability flame damage in radius 10 every second.
 10000614	Raises a shield of unholy energy that causes damage to reduce energy instead of health. 1 energy drained for every 5 damage taken.
@@ -646,7 +646,7 @@
 10000646	Changes the squad's weaponry to mighty Chainaxes (30.77 power melee DPS) and Plasma Pistols (10.42 plasma DPS), and equips the Aspiring Champion with a Melta Pistol (7.82 melta DPS), effective against all targets. The squad gains +10 MS, 20% HP, +1 speed, and 1.5 HP/s combat regen. Squad is immobile while upgrading.
 10000647	Blind all enemies in a radius of 4.5, decreasing their sight range and weapon range by 75% for 10 seconds. Also effective against turrets.
 10000648	Equips a Power Sword (50 power melee DPS). Allied infantry have their damage bonus from Battle Cry increased to 15% per attack. Effective against infantry.
-10000649	Grips an enemy infantry model with an invisible force for 3 seconds, draining the life from them and doing 240 piercing damage while healing the Chaos Lord for 150 health. The Chaos Lord is immobile while the target is held with weapon knockback for the duration. Damage is decreased by 42% when used against retreating units.
+10000649	Grips an enemy infantry model with an invisible force for 3 seconds, draining the life from them and doing 240 piercing damage while healing the Chaos Lord for 150 health. The Chaos Lord is immobile while the target is held with weapon knockback for the duration. Target unit gains 15% melee damage resistance while under its effect and damage is decreased by 42% when used against retreating units.
 10000650	Shifts the Bloodletters partway into the Warp, making them invulnerable and immune to knockback, but unable to attack or capture points for 10 seconds.
 10000651	Summons a mass of sorcerous chains that snare enemy infantry in radius 15, immobilizing them so long as the central mass is not destroyed. If not attacked, the central mass will survive for 15 seconds. Central mass has 500 HP and infantry armor.
 10000652	Consumes the life force of an allied non-hero infantry unit, killing it to regain 50 energy.
@@ -672,9 +672,9 @@
 10000672	Deploys a Holo-field at the target area that lasts for 30 seconds. Any units, friend or foe, within radius 15.5 of the field become infiltrated.
 10000673	Become invisible. Attacking or using abilities will partially reveal the squad. Partially revealed units have received damage lowered by 20%. Can be fully revealed by detector units, capturing points, or getting too close to enemy units. Uses 10 energy to start, and then 1 per second.
 10000674	Infiltrates allies in radius 15 around the Warlock and lowers their received ranged damage by 15% and received suppression by 30%. The Warlock gains 50% lowered received ranged damage and 25% lowered received suppression. Lasts 15 seconds.
-10000675	Become invulnerable, immune to weapon knockback, and have energy regeneration increased by 25 E/s for 15 seconds. The Warlock's other ability cooldowns are reduced to 10% of normal if used while Providence is active. Ability charged by taking 450 damage.
+10000675	Become invulnerable, immune to weapon knockback and boosts energy regeneration by 25 E/s for 8 seconds. The Warlock's other ability cooldowns are reduced to 10% of normal if used while Providence is active.
 10000676	Creates a psychic shield that absorbs damage by draining 1 energy for every 5 damage taken. Also makes Warlock immune to weapon knockback.
-10000677	Fires two roiling blasts of psychic energy that do 25 psychic damage each in radius 5.
+10000677	Fires a roiling blast of psychic energy that does 50 psychic damage in radius 5.
 10000678	The Warlock slashes enemies with a myriad of ethereal blades. Initial slash hits a wedge of radius 6 ahead of the warlock and then deals 12 pulses of 25 melee damage and weapon knockback in radius 5 distributed along an X pattern of length 12.5 in each direction around him.
 10000679	Engulfs an area of radius 7 in wreathing flames, doing 10 ability flame damage every second for 10 seconds.
 10000680	Throws enemy infantry in radius 12 of the target location in the targeted direction using weapon knockback.
@@ -686,19 +686,19 @@
 10000686	Teleports the Warp Spider Exarch and all allied infantry in radius 15 to a targeted location after an 8 second delay. Units preparing to jump are immune to knockback.
 10000687	The Webway projects a field in radius 20 that increases the energy regeneration of allied units by 2 E/s per squad member for 15 seconds.
 10000688	Project a field that conceals all allies in a radius 20 and increases their movement speed by 2 for 10 seconds.
-10000689	Increases health regeneration by 40 HP/s for 7 seconds, but disables the Wraithguard while regenerating.
+10000689	Increases health regeneration by 20 HP/s for 7 seconds, but disables the Wraithguard while regenerating.
 10000690	Increases health regeneration by 70 HP/s for 7 seconds (repairing 490 health total), but disables the Wraithlord while it is regenerating.
 10000691	Gain +3 speed for 10 seconds, but deliver 80% less ranged damage and 40% less melee damage for the duration. Howling Banshees with the Exarch also take 50% less ranged damage.
 10000692	Gain +3 speed for 10 seconds, but deliver 80% less ranged damage and 40% less melee damage for the duration.
 10000693	Fires the Demolisher Cannon at the target position, dealing up to 225 psychic damage in radius 10. Units struck by the cannon in radius 4 receive weapon knockback.
 10000694	Fires a massive burst of chemicals that leave a radius 15 toxic patch on the ground for 10 seconds, reducing the speed of infantry by 60% and inflicting 10 melta damage every second.
-10000695	The General radios in a Valkyrie gunship to drop off reinforcements, reinforcing any allied Imperial Guard squads in radius 35 to full strength.
+10000695	The General radios in a Valkyrie gunship to drop off reinforcements, deploying a beacon that allows allied infantry to reinforce in radius 35 for 25 seconds.
 10000696	The General equips an allied infantry unit with a Medi-kit, which can be deployed at will and heals the unit for 100 health per squad member. Medi-kits cannot be given to the command squad or any target who already has one.
 10000697	Activate a Refractor Shield that absorbs damage by draining 1 energy for every 2.5 damage taken and grants weapon knockback immunity.
 10000698	The targeted allied Imperial Guard non-hero model is killed, increasing the damage of its squad by 100% for 15 seconds. Stops an in-progress retreat, and the unit cannot retreat for 10 seconds.
-10000699	Execute one of your men or fire an aimed shot at an enemy model. If used on friendly units, the squad gains 100% increased damage for 15 seconds. When used on an enemy non-hero infantry model, the target receives 300 piercing damage and has its squad damage output reduced by 50% for 15 seconds. This ability will break a friendly retreat, and the unit cannot retreat for 10 seconds.
+10000699	Execute one of your men or fire an aimed shot at an enemy model. If used on friendly units, the squad gains 100% increased damage for 15 seconds. When used on an enemy non-hero infantry model, the target receives 120 piercing damage and has its squad damage output reduced by 50% for 15 seconds. This ability will break a friendly retreat, and the unit cannot retreat for 10 seconds.
 10000700	The targeted allied Imperial Guard non-hero model is killed, rendering its squad immune to suppression and healing the remaining men to full health, increasing the squad's speed by 2.5 and increasing its damage output by 100% for 15 seconds. This ability will break a retreat, and the unit cannot retreat for 10 seconds.
-10000701	Increases speed by 1 and grants special attacks on every strike for 15 seconds. Allied infantry in radius 35 have their damage output increased by 15%, and then an additional 15% for 15 seconds for every special attack the Lord Commissar makes.
+10000701	Increases speed by 1 and grants special attacks on every strike for 15 seconds. Allied infantry in radius 35 have their damage output increased by 10%, and then an additional 5% for 15 seconds for every special attack the Lord Commissar makes.
 10000702	Inspires nearby units to fight on in the face of death. For the next 15 seconds, allied Imperial Guard infantry in radius 20 of the Lord Commissar cannot be killed although they take damage normally. The Commissar himself can still fall.
 10000703	Fires a volley of three grenades that each deal up to 40 grenade shot damage in a radius 4. Ol' Unreliable does weapon knockback to all targets in radius 5.
 10000704	The Demolition Man arms a remote bomb, which is infiltrated once set up. When detonated, the bomb does 65 detonation damage and weapon knockback in radius 3 and a further 120 detonation damage in radius 6.
@@ -772,7 +772,7 @@
 10000772	Instantly reinforce squads in a radius 50 around your hero for 5 seconds after 2 seconds. Temporarily increases unit speed by 1.5 and damage output by 15% for all infantry units in your army for 20 seconds.
 10000773	Pulls the Kommando Nob towards a target location, dealing 9 piercing damage and knocking back all enemies within a radius of 6.
 10000774	Get sneaky! Attacking or using abilities will partially reveal the hero. Partially revealed units have received damage lowered by 20%. Can be fully revealed by detector units, capturing points, or getting too close to enemy units.
-10000775	Volatile shells that deal devastating damage, doing up to 115 rending damage and weapon knockback to enemies within radius 8 of the target.
+10000775	Volatile shells that deal devastating damage, doing up to 95 inferno damage and weapon knockback to enemies within radius 8 of the target.
 10000776	Tosses 5 grenades, each doing up to 58 grenade damage and weapon knockback in radius 4.5. Effective at dealing with units in cover or garrisoned infantry. Deals an additional 18 damage when Mega Boom Kit is equipped.
 10000777	Take aim, firing a single powerful shot after a 2 second delay, doing 100 sniper AV damage to the target. Does weapon knockback and inflicts 35 piercing damage to everything within radius 5 of the impact.
 10000778	Plants an explosive which can be triggered remotely. The trap does up to 175 detonation damage and ability knockback in radius 15, and inflicts an additional 1300 detonation damage to nearby buildings. Ability cooldown is halved when Mega Boom Kit is equipped.
@@ -782,7 +782,7 @@
 10000782	Throws a grenade filled with burnin' stuff. Does 15 flame damage in radius 10 every second for 15 seconds.
 10000783	The Lootas become infiltrated but immobile while Hide Da Gunz is active. Attacking will partially reveal the squad. Partially revealed units have received damage lowered by 20%. Can be fully revealed by detectors or enemy units that get too close.
 10000784	Power up a force field for 15 seconds, gaining immunity to knockback, suppression, and melee attacks, and taking 50% less ranged damage. The shield inflicts 10 piercing damage and ability knockback to all units in radius 4.
-10000785	Covers a friendly infantry squad with one of da Mek's forcefields, reducing received damage by 40% and making them immune to knockback for 10 seconds.
+10000785	Covers a friendly infantry squad with da Mek's forcefields, reducing received damage by 40% and making them immune to all knockback for 10 seconds.
 10000786	Makes yer armor all sparky! Inflicts 10 melee power weapon damage every second to enemies within radius 10 of the Mekboy. Deals 25% less melee power weapon damage to units in retreat.
 10000787	Restores 150 health (per model) and 70 energy to an allied squad or vehicle.
 10000788	Makes da earth shake around ya! After a 5 second delay, unleashes an expanding earthquake in radius 20 that lasts 15 seconds. Enemy units are stunned and enemy infantry units take weapon knockback. Non-HQ buildings are completely destroyed. Also deals 7 explosive damage and weapon knockback to all units at 10 points at different times within the earthquake's radius.
@@ -809,15 +809,15 @@
 10000809	Calls down Mycetic Spores which do 50 explosive damage and weapon knockback in radius 9, then spawn a Ravener Brood and allow allied infantry in radius 30 to reinforce.
 10000810	Calls down Mycetic Spores which do 50 explosive damage and weapon knockback in radius 9, then spawn a Warrior Brood after a 7 second delay. After an initial 6 second delay, Tyranid squads in a radius of 150 are able to reinforce for 10 seconds.
 10000811	Activates a psychic field that decreases energy by 1 for every 5 damage taken.
-10000812	Renders the Hive Tyrant invulnerable for 9 seconds.
+10000812	Renders the Hive Tyrant invulnerable for 8 seconds.
 10000813	Hurls a blast of Bio-plasma, dealing 35 plasma cannon damage and weapon knockback in radius 7. Inflicts an additional 35 damage and deals 7 flame aoe ability DPS for 10 seconds in radius of 5. Cooldown 45 seconds.
 10000814	Charge at the targeted location, increasing speed by 200%. Each second, all units in radius 6 take 7.5 power melee damage and ability knockback. Targets in radius 2 take an additional 7.5 power melee damage.
 10000815	Deals 35 piercing damage and weapon knockback to enemies in radius 10 of the Hive Tyrant. The ground in radius 15 becomes poisoned for the next 10 seconds, doing 6 piercing damage every second to enemy infantry.
 10000816	Fires terrible barbed hooks at enemy infantry that do 180 sniper damage and pull the target 30 meters towards you with weapon knockback.
-10000817	Soar through the air and land with a high impact, doing weapon knockback to any enemy infantry in radius 10. The Lictor cannot be knocked back for 5 seconds after beginning the jump.
+10000817	Soar through the air and land with a high impact, doing weapon knockback to any enemy infantry in radius 10. The Lictor has 90% damage resistance and suppression immunity during the jump and cannot be knocked back for 5 seconds after beginning the jump.
 10000818	Become invisible. Attacking or using abilities will partially reveal the squad. Partially revealed units receive damage lowered by 20%. Can be fully revealed by detector units or when capturing points.
 10000819	Fires terrible barbed hooks at enemy infantry that do 180 sniper damage and pull the target 16 meters towards you with weapon knockback.
-10000820	Soar through the air and land with a high impact, doing weapon knockback to enemy infantry in radius 10. The Lictor Alpha cannot be knocked back for 5 seconds after beginning the jump.
+10000820	Soar through the air and land with a high impact, doing weapon knockback to enemy infantry in radius 10. The Lictor Alpha has 90% damage resistance and suppression immunity during the jump and cannot be knocked back for 5 seconds after beginning the jump.
 10000821	Emits a cloud of pheromones at the target location that lasts 18 seconds and allows your own infantry to reinforce. Enemy infantry within radius 15 of the cloud have their damage reduced by 30%.
 10000822	Burrows underground, moving 25% slower but bypass terrain obstacles, are immune to knockback, and count as infiltrated. When the Raveners emerge, they do weapon knockback and stun enemy infantry for 4 seconds in radius 10.
 10000823	Raveners burrow deep underground and resurface at the target location, doing weapon knockback in radius 8.
@@ -831,7 +831,7 @@
 10000831	The targeted enemy infantry unit has its speed reduced by 90% for 5 seconds.
 10000832	The Tyrant Guard stampedes to the targeted location, increasing its speed by 100%. Each second all units in radius 4.5 take 20 piercing damage and ability knockback. Targets in radius 3 take an additional 20 piercing damage.
 10000833	The Tyrant Guard withdraws into its protective carapace, disabling attacks, movement and energy regeneration while changing armor type from super heavy infantry to vehicle and increasing health regeneration by 15 HP/s.
-10000834	Fires a focused blast of psychic energy, deals 75 explosive damage and weapon knockback to infantry and 150 explosive damage against vehicles. 20s cooldown.
+10000834	Fires a focused blast of psychic energy dealing 75 explosive damage and weapon knockback to targeted infantry model or 150 explosive damage against vehicles.
 10000835	Activates a psychic field that decreases energy by 1 for every 2 damage taken and grants immunity to weapon knockback while active.
 10000836	The General deploys a Refractor Field on his position in radius 8, reducing the received ranged damage of all infantry within it by 50% for 20 seconds.
 10000837	Upgrades your Chaos Temple to level 3. Unlock Chaos Predator, Land Raider Phobos, and the Great Unclean One.
@@ -863,7 +863,7 @@
 10000863	Inlaid with foul spells, these vestments grant the Warp ability, allowing the Sorcerer to teleport. They also increase health by 100.
 10000864	A huge two-handed melee weapon effective against infantry and heavy infantry (100 melee DPS). Also grants the Sweeping Doom ability, allowing the Chaos Lord to do 35 melee damage, deal weapon knockback, and stun all enemy infantry in a 180 degree arc in front of him.
 10000865	Paired Lightning Claws (100 power melee DPS) particularly effective at slicing up heavy infantry, but makes short work of regular infantry as well. Also grants the Destructive Strike ability, which deals 30 piercing damage and weapon knockback in radius 5 along a line of length 12.5.
-10000866	Equips an improved Storm Bolter that comes with an underslung Flamer (29.35 piercing DPS). Grants the Immolate ability, which ignites an area in flames for 15 seconds, dealing 12 ability flame damage in radius 10 every second.
+10000866	Equips an improved Storm Bolter that comes with an underslung Flamer (range 33, 29.35 piercing DPS). Grants the Immolate ability, which ignites an area in flames for 15 seconds, dealing 12 ability flame damage in radius 10 every second.
 10000867	A mighty Power Fist alive with numberless loathsome contagions, effective against all targets (72.5 heavy melee DPS, 13.03 plasma DPS). Grants the Pestilent Strike ability which stuns surrounding enemy infantry for 4 seconds and reduces incoming ranged damage by 90% in radius 10 for 12 seconds.
 10000868	Increases the Sorcerer's melee damage (44.29 melee DPS) and ignites targets in unholy flame, doing 5 piercing damage every second for 5 seconds. Also grants the Coruscating Flame ability, wreathing an ally in a shield of flame, burning all enemy units around them in radius 10 for 6 flame DPS.
 10000869	Upgrades your Webway Assembly to level 2. Unlock Dark Reaper Squad, Warp Spider Squad, Wraithlord, Falcon, Fire Dragon Squad, and Wraithguard.
@@ -875,7 +875,7 @@
 10000875	Equip a shoulder-mounted Shuriken Cannon, effective against infantry at range (46.67 piercing DPS). Does not suppress. Fires while moving with 50% accuracy.
 10000876	A Spiritseer is sent to lead the squad, increasing the speed of allied Wraithguard in radius 30 by 1.5. If the Spiritseer should die, Wraithguard in radius 25 are stunned for 1.5 seconds and take 100 damage. The Spiritseer has 450 health and 50 melee skill.
 10000877	Add an Exarch to lead the squad and increases the energy regeneration of the squad by 50%. The Exarch has 200 health, 60 melee skill and infantry armor. He can be upgraded with better weapons through Aspect of Warp Spider.
-10000878	Unlocks an arsenal of tools for the squad's disposal. Enables the Holo-field ability to conceal all units in a static area and the Kinetic Pulse ability that knocks back enemy targets. Equips the squad with Longrifles, allowing the squad to harass the foe from afar. 7.2 DPS 27 DPH sniper HI damage.
+10000878	Unlocks an arsenal of tools for the squad's disposal. Enables the Holo-field ability to conceal all units in a static area and the Kinetic Pulse ability that knocks back enemy targets. Equips the squad with Longrifles, allowing the squad to harass the foe from afar. Long rifles regain debuff on hit in T3 (+15% damage taken for 4s). 7.2 DPS 27 DPH sniper HI damage.
 10000879	Enables the Wraithbone ability, allowing the Wraithlord to regenerate 50 HP/s for 7 seconds but disabling it for the duration.
 10000880	Enables the Wraithbone ability, allowing Wraithguard to regenerate 40 HP/s for 7 seconds but disabling them for the duration.
 10000881	Grants the Mind War ability, a psychic duel in which the Farseer deals 40 heavy melee damage and 100 courage damage every second for 6 seconds to the target enemy and suppresses them.
@@ -889,14 +889,14 @@
 10000889	Grants the Fortune ability which temporarily reduces the damage taken by an allied unit by 30% for 15 seconds. Also increases the Farseer's health by 150 and health regeneration by 2.5 HP/s.
 10000890	Grants the Psychic Shield ability that allows the Warlock to absorb damage at the cost of energy at the rate of 1 energy for 5 damage taken. Also increases health by 150.
 10000891	Grants the Cloaking Shroud ability which infiltrates nearby friendly units and reduces their received ranged damage by 15% and suppression by 30%. Also increases the Warlock's health by 150, energy regeneration by 1 E/s, and energy by 20.
-10000892	Grants the Providence ability that when activated greatly reduces ability cooldowns by 10% and renders the Warlock invulnerable, immune to knockback, and have energy regeneration increased by 25 E/s for 15 seconds. Also increases health by 300.
+10000892	Grants the Providence ability that when activated greatly reduces ability cooldowns and renders the Warlock invulnerable, immune to knockback and boosts energy regeneration by 25 E/s for 15 seconds. Also increases health by 300.
 10000893	Reduces the cooldown of Teleport by 4 seconds and increases jump range by 20. Also increases the Warp Spider Exarch's health by 100 and energy regen by 1.5 E/s.
 10000894	Grants the Group Teleport ability. Also increases the Warp Spider Exarch's health by 200 and energy by 100.
 10000895	Grants the Phase Shift ability, which freezes units around the Warp Spider Exarch while also making them invulnerable. Also increases health by 150.
 10000896	Equips a Singing Spear that improves the Farseer's melee damage and upgrades her ranged attack. Also grants the Doom ability that increases the received damage of the targeted enemy by 30%. 57.69 melee DPS, 10.29 piercing DPS.
 10000897	Equips a Singing Spear that is effective against all targets (76.92 melee heavy DPS) and upgrades her ranged attack (10.92 piercing DPS).
 10000898	Equips an improved Witchblade and grants the Levitation Field ability, which disables enemy infantry around the Farseer with ability knockback, and deals 50 power melee damage. 65 melee DPS.
-10000899	Grants the Heavy Gauge Filament ability, which adds knockback to the Warp Spider Exarch's ranged attacks. 34.09 piercing DPS ranged, 17.86 melee DPS.
+10000899	Grants the Heavy Gauge Filament ability, which adds knockback to the Warp Spider Exarch's ranged attacks. 28 piercing DPS ranged, 17.86 melee DPS.
 10000900	Equips a more powerful dual Death Spinner (34.09 piercing DPS) and grants the Entangle ability, which immobilizes the targeted enemy infantry unit for 5 seconds.
 10000901	Equips upgraded Powerblades, which deal heavy melee damage (53.57 heavy melee DPS) and are effective against all targets. Also increases melee skill by 10 while equipped.
 10000902	Equips a Witchblade that increases the Warlock's melee damage and grants the Ethereal Slash ability which shreds enemies in an area around the Warlock. 71.43 power melee DPS.
@@ -905,7 +905,7 @@
 10000905	Upgrades your Bastion to level 3. Unlocks Leman Russ, Cadian Kasrkin Squad and Baneblade.
 10000906	Upgrades your Bastion to level 2.  Unlocks Storm Trooper Squad, Chimera, Manticore and Ogryn Squad.
 10000907	Increases the squad members' maximum HP by 25. Also grants the Smoke Grenade ability and the Improvised Explosives ability. Equipped automatically when the squad is spawned.
-10000908	Add the 'Sarge' to the Devils unit. The Sarge is die last with 200 HP and armed with a Melta Gun (22.65 melta DPS), effective against all targets. He adds +5 melee skill to the squad and grants the Camouflage ability, which allows the Devils to infiltrate after standing still for 4 seconds.
+10000908	Add the 'Sarge' to the Devils unit. The Sarge is die last with 200 HP and armed with a Melta Gun (19.76 melta DPS), effective against all targets. He adds +5 melee skill to the squad and grants the Camouflage ability, which allows the Devils to infiltrate after standing still for 4 seconds.
 10000909	Equips the guardsman infantry squad with 3 Flamers (3.13 flame DPS with splash damage in a radius 5). Flamers are effective against buildings, units in buildings and dense formations of infantry. Removes melee charge.
 10000910	Adds a die last Sergeant to the squad (170 HP, 11.98 piercing DPS, 12 melee DPS). Grants the squad the Ration Packs ability, which heals the guardsmen squad.
 10000911	Adds a Commissar to the squad (300 HP, 11.98 piercing DPS, 26.15 power-melee DPS). Grants the Summary Execution ability, which will break a retreat in progress and the Fix Bayonets! ability, which bolters the squads melee capacties. Increases the units HP by 10%
@@ -917,15 +917,15 @@
 10000917	Replaces the Heavy Turret's Vanquisher Cannon with an Executioner Cannon, less effective against vehicles but more effective against infantry. 33.79 plasma cannon DPS.
 10000918	Adds a Commissar with 250 HP, 7.69 melee DPS, and 7.82 piercing DPS to the Lord General's retinue, granting the Refractor Field ability that reduces incoming ranged damage by 50%. Also increases the command squad's damage by 15%.
 10000919	Adds a Sergeant with 250 HP, 4 melee DPS, and 3 piercing DPS to the Lord General's retinue, granting the Distribute Medi-kit ability that heals an allied squad. Also increases the command squad's health by 15%.
-10000920	Adds a Vox Operator with 250 HP, 4 melee DPS, and 4.32 piercing DPS to the Lord General's retinue, granting the Call Reinforcements ability that reinforces allied squads. Also increases the command squad's speed by 1.25 and energy regeneration by 1 E/s.
+10000920	Adds a Vox Operator with 250 HP, 4 melee DPS, and 4.32 piercing DPS to the Lord General's retinue, granting the Call Reinforcements ability that reinforces allied squads. Also increases the command squad's speed by 1.25, energy by 25 and energy regeneration by 1 E/s.
 10000921	Grants the Off Map Artillery ability that calls down three Basilisk rounds from off map, each of which deal up to 150 manticore rocket damage and weapon knockback in radius 10.
 10000922	Grants the Impenetrable ability which makes the Inquisitor invulnerable and increases her speed by 3 for 7 seconds.
 10000923	Grants the Conversion Field ability that allows the Inquisitor to absorb damage at the cost of energy. 1 energy lost for every 5 damage taken.
 10000924	Increases the Inquisitor's energy by 150 and energy regeneration by 20%.
-10000925	Grants the Incoming! ability, decreasing range damage taken by nearby infantry by 30%, and making them immune to knockback. Also increases the Lord General's health by 100.
-10000926	Grants the Back in the Fight! ability, increasing the health regeneration of allied infantry in radius 30 by 1.5 HP/s for 20 seconds. Also increases the Lord General's health by 100.
-10000927	Grants the Stand Firm ability, rendering nearby infantry immune to suppression for 15 seconds. Also increases the Lord General's health by 100 and his maximum energy by 20.
-10000928	Replaces the Inspire Courage ability with Inspire Terror, allowing the Lord Commissar to execute enemy units to break their resolve. Also increases health by 150.
+10000925	Grants the Incoming! ability, decreasing range damage taken by nearby infantry by 30%, and making them immune to weapon knockback. Also increases the Lord General's health by 100 and energy regen by 0.5 E/s.
+10000926	Grants the Back in the Fight! ability, increasing the health regeneration of allied infantry in radius 30 by 1.5 HP/s for 20 seconds. Also increases the Lord General's health by 100 and energy regen by 0.5 E/s.
+10000927	Grants the Stand Firm ability, rendering nearby infantry immune to suppression for 15 seconds. Also increases the Lord General's health by 100, maximum energy by 20 and energy regen by 0.5 E/s.
+10000928	Adds the ability Inspire Terror, allowing the Lord Commissar to execute enemy units to break their resolve. Also increases energy by 50 and energy regen by 0.5 E/s.
 10000929	Grants the Assail ability, which immobilizes, suppresses, and damages a target over time, dealing 12.5 piercing damage every second. Damage requires channeling, units in retreat take 40% less damage. Also increases the Inquisitor's health by 100 and health regen by 0.5.
 10000930	Grants the Purgatus ability, which unleashes a ring of flames that stuns and damages enemies. Also increases health by 200.
 10000931	Grants the Silently ability, allowing the Inquisitor to infiltrate an allied infantry unit. Also increases energy by 50.
@@ -934,7 +934,7 @@
 10000934	Equips the General himself with a Sniper Rifle and reverts any bodyguard weapons to default. Grants the Fire On My Target! ability, increasing the weapon range of nearby infantry by 30%. 18.26 sniper HI DPS, 60 DPH.
 10000935	Equips a legendary Power Fist and grants the None Shall Fall! ability, inspiring nearby infantry to fight on in the face of death. No infantry models affected can die for the duration. 84.62 heavy melee DPS.
 10000936	Equips a Power Sword, effective against infantry and heavy infantry. Grants the Lead by Example ability, which inspires nearby troops, increases the Commissar's speed by 1 and causes him to perform special attacks with every strike. 50 power melee DPS.
-10000937	Equips a Crossbow Bolt Pistol effective against infantry from range. Also grants the Crippling Volley ability, which immobilizes enemy infantry in an area. 38 range 31.5 piercing DPS.
+10000937	Equips a Crossbow Bolt Pistol effective against infantry from range. Also grants the Crippling Volley ability, which immobilizes enemy infantry in an area. 33 range 31.5 piercing DPS.
 10000938	Equips the Holy Brazier, a mace burning with sacred fire effective against heavy infantry. Also grants the Holy Pyre ability, which damages enemies and reduces the damage output of enemies in an area by 20%. 50 power melee DPS.
 10000939	Equips a rare Melta Pistol effective against all targets. Also grants the Judgement ability, dealing heavy damage to a single target, up to 300 judge shot av damage at the center of the blast. 43.48 melta DPS.
 10000940	Upgrades your Stronghold to level 2.  Unlock Devastator Plasma Cannon Squad, Dreadnought, Razorback, Whirlwind and Librarian.
@@ -963,14 +963,14 @@
 10000963	When the Apothecary uses Heal, enemies within radius 7 of the target will take 20 melee damage and weapon knockback. Damage is increased by 2 with each level.
 10000964	Grants the Purification Vials ability, which deals 45 grenade damage in radius 7.5, and then 10 flame DPS for 10 seconds to all units in radius 15. Effective against groups of enemy infantry.
 10000965	Grants the Iron Halo ability which allows the Force Commander to absorb damage at the cost of energy. 5 damage absorbed for every point of energy lost.
-10000966	Equips the Sacred Standard which inspires allied, non-commander infantry in radius 25, increasing their damage by 25%. If the Force Commander falls in battle, the damage bonus increases to 40%.
+10000966	Equips the Sacred Standard which inspires allied, non-commander infantry in radius 25, increasing their damage by 20%. If the Force Commander falls in battle, the damage bonus increases to 35%.
 10000967	Grants the Teleport ability, allowing the Force Commander to instantly teleport to a targeted location.
 10000968	Grants the Orbs of the Omnissiah ability, grenades which disable vehicles for 12 seconds and deal 150 damage. They also burn 100  energy from any unit caught in the blast.
-10000969	Grants the Refractor Field ability which allows the Techmarine to absorb damage at the cost of energy. 5 damage absorbed for every point of energy lost. Also decreases the accuracy of enemies attacking the Techmarine by 20%.
+10000969	Grants the Refractor Field ability which allows the Techmarine to absorb damage at the cost of energy. 6.25 damage absorbed for every point of energy lost.
 10000970	Grants the Combat Stimulants ability which increases the damage of an allied infantry unit by 30%, grants them 15% damage resistance and breaks suppression. Also increases the Apothecary's health by 125.
 10000971	Reduces the cooldown of Heal by 35%, increases the Apothecary's health by 100 and his health regeneration by +1.5 HP/s.
 10000972	Increases the Force Commander's health by 100, speed by 0.5, and grants the Sprint ability that temporarily increases speed by 3 for 10 seconds.
-10000973	Permanently equips the Force Commander with Terminator armor, changing him into an entirely different unit. His health is increased to 2500, but he loses any gained levels and access to normal wargear, gaining access to Terminator weapons instead. Equips him with a Storm Bolter (33.87 piercing DPS) and Power Fist (85 heavy melee DPS).
+10000973	Permanently equips the Force Commander with Terminator armor, changing him into an entirely different unit with 1800 HP commander armor, veterancy level is reset and cannot level up again, loses access to normal wargear, gaining access to Terminator weapons instead. Equipped with a Storm Bolter (33.87 piercing DPS) and Power Fist (85 heavy melee DPS).
 10000974	Enables the Proximity Mine ability, allowing the Techmarine to lay mines which suppress, snare vehicles, and deal up to 150 explosive damage. Also increases the Techmarine's health by 200 and health regeneration by 2.5 HP/s.
 10000975	Equips a power axe (50 power melee DPS) and a Plasma Pistol (10.42 plasma DPS) effective against heavy infantry. With every strike the axe restores 15 energy to the Apothecary and burns 15 energy from the target and the Apothecary's health increases by 100.
 10000976	Equips a slow but deadly Power Fist (85 heavy melee DPS) and Plasma Pistol (10.42 plasma DPS) effective against all targets. Also grants the Flesh Over Steel ability that disables a targeted vehicle for 5 seconds.
@@ -992,13 +992,13 @@
 10000992	Increases the maximum health of the Tank by 200.
 10000993	Increases the Weirdboy's health by 15% and grants the Over Dere! ability, allowing the Weirdboy to fling allies through the air without damaging them.
 10000994	Increases the Weirdboy's energy by 500 and grants the Foot of Gork ability, which deals up to 225 plasma cannon damage and ability knockback in radius 10, stunning anything it hits.
-10000995	Delays the Weirdboy's death explosion, increases health by 25%, and grants the Warpath ability, which increases surrounding infantry's speed by 2, and grants 20% damage resistance.
+10000995	Delays the Weirdboy's death explosion, increases health by 25%, and grants the Warpath ability, which increases surrounding infantry's speed by 1.5, and grants 20% damage resistance.
 10000996	Plant an explosive which can be triggered remotely, dealing up to 170 detonation damage to all targets, and up to 1300 to nearby buildings.
 10000997	Grants the Stikkbomb ability which throws a salvo of effective anti-infantry and anti-garrison grenades, dealing up to 58 grenade damage per grenade, as well as weapon knockback. Damage increased by 18 when Mega Boom Kit is equipped.
 10000998	Trigger a massive explosion right under the Kommando's feet, dealing 100 explosive damage to nearby foes and sending him flying (and severely damaging him). When Mega Boom Kit is equipped, the Kommando Nob is not knocked away.
 10000999	Gives the Mek a force field. The force field makes the Mek immune to melee attacks. The Mek also takes reduced damage from ranged attacks and knocks down nearby units for a short time, dealing 10 piercing damage when they get too close.
 10001000	Grants the Proximity Mines ability, 4 deployable mines that damage and suppress infantry, and slow vehicles by 70% for 30 seconds.
-10001001	Grants the Supa Tuff Beam ability which makes an allied infantry unit 40% more resistant to damage, and immune to knockback and suppression.
+10001001	Grants the Supa Tuff Beam ability which makes an allied infantry unit 40% more resistant to damage and immune to all knockback.
 10001002	Grants the Now I'm Angry ability which lets the Warboss charge at the enemy, increasing his damage by 35%, his speed by 1.5, his health regeneration by 7.5 HP/s, and knocking back enemies in his path.
 10001003	Gives the Warboss a Boss Pole that keeps da boyz in line. Allied infantry in radius 25 of the Warboss receive 50% less suppression and have 20% increased health.
 10001004	Gives the Warboss a trophy rack that frightens enemy infantry in radius 25, reducing their damage by 25%.
@@ -1014,10 +1014,10 @@
 10001014	Upgrades your Tyranid Hive to level 2 and unlocks the Venom Brood, Zoanthrope, Tyrant Guard and Genestealer Brood.
 10001015	Upgrades your Tyranid Hive to Level 3 and unlocks the Lictor, Carnifex, Neurothrope and the Swarmlord.
 10001016	Biomorph a Barbed Strangler, effective against infantry but removes AoE from melee attacks. Shoots seed pods that erupt on impact, suppressing infantry in radius 12. Also grants the Spore Cysts ability, which spawns Spore Mines around the Carnifex. Removes the Carnifex's Melee Resistance Aura. 125 plasma cannon DPH.
-10001017	Upgrades one member of the squad with a ranged suppression biomorph effective against massed and garrisoned infantry. Barbed Stranglers launch seed pods in an indirect arc which erupt on impact, suppressing enemy infantry in radius 6. Reduces squad charge range to 0. 35 Barbed Strangler damage per shot.
+10001017	Upgrades one member of the squad with a ranged suppression biomorph effective against massed and garrisoned infantry. Barbed Stranglers launch seed pods in an indirect arc which erupt on impact, suppressing enemy infantry in radius 6. Removes knockback leaps and reduces speed by 0.5. 35 Barbed Strangler damage per shot.
 10001018	Equips the brood with improved Rending Claws, increasing melee damage against vehicles and making the Genestealer Brood effective against all targets. 34.75 heavy melee DPS.
 10001019	Adrenal Glands increases the squad's health by 10% and damage by 10%. Increases leap attack range from 8 to 12 and speed by 0.25.
-10001020	Biomorph a Venom Cannon, effective against vehicles but removes AoE from melee attacks. Also grants the Bio-plasma ability, a powerful ranged blast dealing area-of-effect damage. Removes the Carnifex's Melee Resistance Aura. 50 armor piercing DPS, 100 DPH in radius 0.5. Increases the Carnifex's maximum speed by 1.
+10001020	Biomorph a Venom Cannon, ranged weapon effective against all, especially large targets but removes AoE from melee attacks and melee resistance. 50 armor piercing DPS, 100 DPH in radius 0.5. Also grants the Bio-plasma ability, a powerful ranged blast dealing area-of-effect damage and knockback. Increases the Carnifex's maximum speed by 1.
 10001021	Grants the Hive Tyrant the Bio-plasma ability, a ranged area-of-effect attack that deals damage and weapon knockback.
 10001022	Grants the Warp Field ability that allows the Hive Tyrant to absorb damage at the cost of energy. 1 energy lost for every 5 damage done.
 10001023	Grants the Hive Tyrant the Psychic Scream ability, which causes enemy units around the Hive Tyrant to do 30% less damage.
@@ -1100,7 +1100,7 @@
 10001100	The Brother-Captain is a shield against the Terror. Grants the Bulwark ability, which grants damage resistance and melee damage bonuses to a targeted ally.
 10001101	Equips two Grenade Launchers that are effective against groups of enemies and enemies in buildings. 14.74 grenade launcher DPS (up to 42 damage per grenade in radius 3). Grants the Grenade Barrage ability.
 10001102	Thorax Swarm
-10001103	Increases the Warrior Brood's speed by 0.5, increases the squad's health by 20%, and grants the Electroshock Grub and Desiccator Larvae abilities. Squads with Thorax Swarm cannot be upgraded with Adrenal Glands.
+10001103	Increases the Warrior Brood's speed by 1, increases the squad's health by 20%, and grants the Electroshock Grub and Desiccator Larvae abilities. Squads with Thorax Swarm cannot be upgraded with Adrenal Glands.
 10001104	Electroshock Grub
 10001105	Launch Electroshock Grubs into a vehicle or monstrous creature to hamper its circuitry. Inflicts 160 melta damage,  snares target vehicle's speed and rotation rates by 60% for 15 seconds, and disables weaponry for 2 seconds.
 10001106	Desiccator Larvae
@@ -1133,7 +1133,7 @@
 10001133	Upgrades your Stronghold to level 3.  Unlock Grey Knight Terminators and Land Raider Crusader.
 10001134	Psycannon
 10001135	Equip Psycannons
-10001136	Equips the squad with a Psycannon, heavy ranged weapons effective against all targets. Requires time to setup and teardown. 69.75 Psycannon DPS. Squad HP is reduced to 675 HP (-125 HP each).
+10001136	Equips the squad with a Psycannon, heavy ranged weapons effective against all targets. Requires time to setup and teardown. 40.97 Psycannon DPS. Squad HP is reduced to 675 HP (-125 HP each).
 10001137	Dislodge
 10001138	The Gate clears its passageway of clutter, knocking back friendly units.
 10001139	Psycannon
@@ -1149,7 +1149,7 @@
 10001149	Eversor Assassin
 10001151	Eversor description placeholder
 10001152	Bio-Meltdown
-10001153	The Eversor takes 10 DPS while emitting a radius 15 damage aura dealing 10 piercing DPS every second for 22 seconds. All infantry exiting the aura continue taking damage for 3 seconds. If the Eversor dies after 6 seconds, but before this ability wears off, all units in radius 15 take 75 explosive damage and weapon knockback.
+10001153	The Eversor takes 10 DPS while emitting a radius 15 damage aura dealing 7.5 plasma DPS every second for 22 seconds. All infantry exiting the aura continue taking damage for 3 seconds. If the Eversor dies after 6 seconds, but before this ability wears off, all units in radius 15 take 56.25 plasma cannon damage and weapon knockback.
 10001154	Hypermetabolism
 10001155	Overclock the Eversor to the peak of his combat performance. All abilities used during Hypermetabolism have 50% cooldowns and he gains 2 E/s and 12 HP/s for 20 seconds. After this exertion the Eversor is vulnerable and takes 30% more damage for 10 seconds.
 10001156	Mark
@@ -1159,7 +1159,7 @@
 10001160	Executioner Pistol
 10001161	Equip the Eversor Assassin with an Executioner Pistol, highly effective against infantry. Grants the Neurotoxin ability which slows a targeted model by 40% and inflicts 120 piercing damage over 5 seconds. 23.45 piercing DPS, 40 melee DPS.
 10001162	Neurotoxin
-10001163	Slow a targeted model by 40% and deal 120 piercing damage over 5 seconds.
+10001163	Slow a targeted model by 40% and deal 120 piercing damage over 5 seconds. Retreating targets take 30% less damage.
 10001164	Eviscerator Axe
 10001165	Equip a Power Axe effective against all infantry. Grants the Killzone ability which increases allied melee damage. 50 power melee DPS.
 10001166	Killzone
@@ -1231,7 +1231,7 @@
 10001232	Liber Malleus
 10001233	The Daemonhunter draws on the records of millennia of battle. Grants the Sundering ability, granting a unit 20% melee damage resistance while cursing foes damaged in melee by the squad to take more melee damage for 6 seconds.
 10001234	Sundering
-10001235	Channels his psychic might into an allied infantry unit for 12 seconds, granting them 20% melee damage resistance while cursing foes they damage in melee to take 35% more melee damage for 6 seconds.
+10001235	Grants arcane knowledge of enemy vulnerabilities to an allied infantry unit for 12 seconds, granting them 20% melee damage resistance while cursing foes they damage in melee to take 35% more melee damage for 6 seconds.
 10001236	Blessed Icon
 10001237	This sanctified relic grants the Word of the Emperor ability, increasing the speed of allied infantry in radius 15 by 2.5 and reduces their damage by 40% for 10 seconds.
 10001238	Word of the Emperor
@@ -1257,7 +1257,7 @@
 10001258	Daemonhunter
 10001259	The Daemonhunter is an elite at crushing resistance under a barrage of psychic power. His abilities bolster troops and cripple foes.
 10001260	Retribution
-10001261	Unleash the energy stored within the Force Rod. Enemies in a radius 15 have their abilities silenced for 6.5 seconds, suffer 20 psychic damage and weapon knockback.
+10001261	Unleash the energy stored within the Force Rod. Enemies in a radius 10 have their abilities silenced for 6.5 seconds, suffer 20 psychic damage and weapon knockback.
 10001262	Empyrean Brain Mines
 10001263	Self Destruction
 10001264	The building self destructs after a 6 second delay.
@@ -1274,7 +1274,7 @@
 10001277	Banishment
 10001278	Fire 3 bolts of psychic lightning, each inflicting 10 banishment damage in radius 6. Damage is increased by 50% with Justicar present. Range 25, Cooldown 40 seconds.
 10001279	Tomes of Titan
-10001280	Increases squad health and melee damage by 10% and their health regeneration outside of combat by 1.5 HP/s. Grants psychic abilities that control and smite foes.
+10001280	Increases squad health by 10% and their health regeneration outside of combat by 1.5 HP/s. Grants psychic abilities that control and smite foes.
 10001281	Astral Aim
 10001282	Grants 12 extra range and increases damage by 15% of allied infantry in radius 25 whilst active. Reduces movement speed of the Brother-Captain by 20%. Costs 10 energy to activate and 5 energy per second whilst active.
 10001283	Battle Rites
@@ -1297,7 +1297,7 @@
 10001300	Stun Grenade
 10001301	Acolyte Leader
 10001302	An Acolyte joins the squad to bolster their zeal armed with a 55 power melee DPS Eviscerator. Increases squad damage resistance and damage output by 20%. Improves Battle Frenzy, further increasing damage resistance and health regen.
-10001305	Battle Frenzy
+10001305	Improved Battle Frenzy
 10001306	Increases squad's damage resistance by 50%, grants +1 speed, and increases HP regen by 3.5 HP/s while ability is active.
 10001307	Hellguns
 10001308	Equips the squad with Hellguns and removes all weapon cooldown from the squad. 18.33 piercing DPS.
@@ -1336,7 +1336,7 @@
 10001341	Increases damage resistance by 20% and increases the effectiveness of Purification by 300%. Increases health regen in combat by 1.5 HP/s and reduces ability cooldowns by 50%. Increases target range of Purification and Energy Burst to 35.
 10001342	Instantly restore 200 energy to an allied infantry unit.
 10001343	Stranglethorn Cannon
-10001344	Biomorph a Stranglethorn Cannon, effective against infantry but removes AoE from melee attacks. Shoots seed pods that erupt on impact, suppressing infantry in radius 12. Also grants the Spore Cysts ability, which spawns Spore Mines around the Carnifex. Removes the Carnifex's Melee Resistance Aura. 125 plasma cannon damage per shot.
+10001344	Biomorph a Stranglethorn Cannon, artillery weapon effective against all targets but removes AoE from melee attacks and melee resistance. Shoots seed pods that erupt on impact dealing 125 plasma cannon damage and suppressing infantry in radius 12. Also grants the Spore Cysts ability, which spawns Spore Mines around the Carnifex.
 10001345	Heavy Weapon Team
 10001346	Mobile weapon platform armed with a suppression weapon. Has a limited firing arc and requires set-up time. Can be upgraded with an anti-armor weapons.
 10001347	Above Ground
@@ -1347,7 +1347,7 @@
 10001352	After 1.5 seconds, all infantry in radius 15 of this ability cannot use abilities and suffer 10 plasma DPS. Channeled ability. Requires 8 E/s to maintain. Cooldown 35 seconds.
 10001353	Gretchins
 10001354	Gretchin
-10001355	Fragile infantry who can repair vehicles and construct Da Boyz Hut, an inexpensive garrison building. Gretchin can be upgraded to fill a variety of roles in the Ork army, but require support. Grot Knife (3 melee DPS) Grot Pistol (5 piercing DPS).
+10001355	Fragile infantry that can repair vehicles and construct Da Boyz Hut, an inexpensive garrison building. Gretchin can be upgraded to fill a variety of support roles for the Ork warband. Grot Knife (3 melee DPS) Grot Pistol (5 piercing DPS).
 10001356	Da Boyz Hut
 10001357	An inexpensive garrison building. Allied infantry and heroes within a radius of 25 have their damage increased by 12%, speed by 0.50, and received damage and suppression lowered by 12%..
 10001358	Primaris Psyker
@@ -1355,9 +1355,9 @@
 10001360	Ammo Runtz
 10001361	Equips Gretchin with Shootas (10 piercing DPS, 1 melee DPS) and bags of spare ammo allowing them to increase the range damage of nearby allies by 10%.
 10001362	Grot Orderlies
-10001363	Equips Gretchin with medical instruments. Grants the ability "Fix em' Up!" which heals an allied Ork unit for 10hp/s for 10 seconds while stunning them for 5 seconds.
+10001363	Equips Gretchin with medical instruments. Grants the ability "Fix em' Up!" which heals an allied Ork unit for 10hp/s for 10 seconds while sdisabling them for 5 seconds.
 10001364	Repair Krew
-10001365	Gretchin are equipped with wrenches allowing them to build turrets and repair buildings and vehicles for 10 HP/s.
+10001365	Gretchin are equipped with wrenches allowing them to build turrets and improves repair speed to 10 HP/s.
 10001366	Ethereal Shockwave
 10001367	Detonates warp energy dealing 50 inferno DMG and weapon KB to enemies in radius 5 along a line length 20. 
 10001368	Strip Soul
@@ -1373,7 +1373,7 @@
 10001378	Spare Ammo
 10001379	Increases the ranged damage of an allied infantry unit by 10% for 8 seconds. Cooldown 40s.
 10001380	Stormlord
-10001381	Super-heavy transport armed with 3 twin-linked Heavy Bolters (3 x 33.33 piercing DPS), two Lascannons (2 x 8.75 armor piercing DPS), and a Titan-class Vulcan Mega Bolter (100 inferno DPS) that inflicts minor suppression. Reinforces nearby units in R 40, can embark 4 squads.
+10001381	Super-heavy transport armed with 3 twin-linked Heavy Bolters (3 x 33.33 piercing DPS), two Lascannons (2 x 7.5 armor piercing DPS), and a Titan-class Vulcan Mega Bolter (100 inferno DPS) that inflicts minor suppression. Reinforces nearby units in R 40, can embark 4 squads.
 10001382	Stormblade
 10001383	Super-heavy battle tank armed with two twin-linked Heavy Bolters (2 x 33.33 piercing DPS), one front-mounted Heavy Bolter (26.67 DPS), two Lascannons (2 x 13.75 armor piercing DPS), and a Titan-class Plasma Blastgun (16.67 plasma cannon DPS, 200 DPH). Has the Overcharged Plasma ability.
 10001384	Bullgryns
@@ -1429,14 +1429,14 @@
 10001434	Build a Heavy Bolter Turret with limited arc of fire that can suppress enemy infantry, 114.29 suppression DPS.
 10001435	These lumbering and durable anti-tank units can shoot normally while suppressed and passively slow enemy infantry by 30% in radius 6. Explodes on death healing allied infantry for 150 HP and damaging enemies with 50 explosive DMG and weapon KB in R 8. Armed with Plague Bolters (5.83 piercing DPS + 1 DPS x 5 seconds per hit) and Missile Launcher (17.81 explosive DPS, 130 DPH) which slows vehicles and monstrous creatures by 40% for 8 seconds.
 10001436	Can only have one Sternguard Veterans squad
-10001437	Lash out in the specified direction with an explosive strike dealing 3 pulses of 20 piercing damage and weapon knockback in radius 5 distributed along a line of length 12.5.
+10001437	Lash out in the specified direction with an explosive strike dealing 3 pulses of 15 piercing damage and weapon knockback in radius 5 distributed along a line of length 12.5.
 10001438	Spawn a Kommando melee squad with stabby knives (30 power melee DPS) and all sorts of bombs.
 10001439	Mobile weapons platform armed with a powerful Distortion Cannon, capable of tearing the very fabric of space with Rift Tear. 18.33 plasma cannon DPS, 165 DPH. Has a limited firing arc and requires set-up time.
 10001440	Melee supremacy unit of Warlocks armed with Singing Spears and firing psychic Destructor bolts (40 power melee DPS, 15.35 piercing DPS). Projects range 32 aura that invigorates and protects allied infantry (+3 E/s, 15% ranged resist). Can be upgraded with Empower Spears to defeat vehicles and monsters.
 10001441	Deploy the Seer Council at the Webway Assembly. Melee supremacy unit of Warlocks armed with Singing Spears and firing psychic Destructor bolts (40 power melee DPS, 15.35 piercing DPS). Projects range 32 aura that invigorates and protects allied infantry (+3 E/s, 15% ranged resist). Can be upgraded with Empower on their Singing Spears to defeat vehicles and monsters.
 10001442	Seer Council imbues themselves with the strength of ancient heroes to pierce the heaviest armor with their Singing Spears (40 heavy melee DPS).
 10001443	Purge Soul
-10001444	Purgator focuses his psychic might on an enemy to scour their soul of any trace of impurity. Targeted entity is crippled by channeled effects that reduce rotation by 50%, speed by 75% and enemy champions (commander armor) are additionally dealt 25% of their max health in DMG over 5 seconds of channeling or half that rate in retreat. Minimum range 2.
+10001444	Purgator focuses his psychic might on an enemy to scour their soul of any trace of impurity. Targeted entity is crippled by channeled effects that reduce rotation by 50%, speed by 75% and enemy champions (commander armor) are additionally dealt 40% of their max health in DMG over 5 seconds of channeling or half that rate in retreat. Minimum range 5.
 10001445	Daemonic fast attack melee infantry armed with deadly Hellblades (45 power melee DPS). NOT USED
 10001446	Expendable slaves to Chaos armed with swords and pistols (15.71 melee DPS,0.35 piercing DPS). Can Worship their patron god to grant a boon to their army and use suicidal Doomblasts to suppress enemies. Can be upgraded with Aspiring Champion leader and Grenade Launchers for ranged fire support.
 10001447	Greater Daemon of Nurgle wielding a massive Plague Sword (100 heavy melee DPS). Can vomit bile on enemies, drag them towards itself and stomp on melee attackers. Foul aura damages enemy infantry (5 piercing DMG per 1.5 s, R 15). Explodes upon death, dealing 800 explosive DMG and ability KB to enemies while healing allies for 150 HP in R 15.
@@ -1450,7 +1450,7 @@
 10001456	Versatile armored troops armed with Bolters (14.58 piercing DPS, 19 melee DPS). 40% melee resist, 150% capture speed and can use Kraken Bolts vs heavy infantry armor. Can equip Flamer, Plasma Gun or Missile Launcher and add a Sergeant to lead the squad.
 10001457	Heavy weapons specialists armed with a Heavy Bolter for suppressive fire (216.39 suppression DPS). Requires setup and has a limited arc of fire. 20% melee resist. Can upgrade with Vengeance Rounds or equip a Lascannon for dedicated vehicle hunting.
 10001458	Jump assault troops armed with Chainswords and Bolt Pistols (26.92 melee DPS, 7.3 piercing DPS). Can equip Melta Bombs to snare vehicles and Blind Grenades. A Sergeant can be added to lead the squad.
-10001459	Artillery support troops wielding the long range Plasma Cannon, effective against all (26.25 plasma cannon DPS, 210 DPH + ability KB in R 7). Requires setup and has a limited arc of fire. 20% melee resist.
+10001459	Artillery support troops wielding the long range Plasma Cannon, effective against all (26.25 plasma cannon DPS, 210 DPH + weapon KB in R 7). Requires setup and has a limited arc of fire. 20% melee resist.
 10001460	Combat Psyker armed with force sword and Bolt Pistol (60.71 power melee DPS, 16.05 piercing DPS). Killing enemies inspires allied non terminator infantry in R 35, increasing DMG by 5% and received suppression by 10% for 15 s. Starts with Smite, Quickening and Veil of Time abilities.
 10001461	Fast transport armed with a twin linked Heavy Bolter (55 piercing DPS). Can transport and reinforce allied infantry in radius 40 except Terminators. Can use Smoke Launchers to deploy a protective smokescreen and upgrade with reinforced armor plating.
 10001462	Heavy combat walker equipped for melee with dual Dreadnought claws and a Flamer (100 heavy melee DPS, 5.5 flame DPS). Can use Emperors Fist for crowd control. Killing enemies in melee Inspires allied units (+20% DMG and -20% received suppression and +100 courage for 20 s in R 45). Can equip ranged weapons for fighting infantry or armor.
@@ -1459,7 +1459,7 @@
 10001465	Melee Kommando Nob Leader
 10001466	Dese boyz are proper sneaky but dey can also find other sneaky gits! Very stabby (30 power melee DPS), they gots all sorts of bombz and capz fasta (150%). Can add a Nob Leader with a 'Uge Hammer that can smash some tanks!
 10001467	Heavy automata animated by the spirits of fallen Eldar wielding devastating Wraithcannons (24.4 melta DPS, 97.6 DPH). Being within range 30 of friendly Farseer or Warlock models grants Wraithsight, increasing speed by 1.5, but death of a leader granting Wraithsight within range 25 deals 100 damage to each Wraithguard and stuns them for 1.5 seconds.
-10001468	Basic ranged combat unit armed with Lasguns (4.53 piercing DPS, 2 melee DPS). Can repair, build light fortifications and turrets. Can be upgraded with Plasma Guns and add 2 of the following: Sergeant, Commissar or Platoon Commisar.
+10001468	Basic ranged combat unit armed with Lasguns (4.53 piercing DPS, 2 melee DPS). Can repair, build light fortifications and turrets. Can be upgraded with Plasma Guns and add 2 of the following: Sergeant, Commissar or Platoon Commissar.
 10001469	Armored scout vehicle that is armed with a Autocannon (25.16 explosive DPS). Ideal for contributing to ranged fire fights or kiting melee units. Can use the Stomp ability for crowd control and upgrade its weapon to the Frag Missile Launcher (26 dps) in T2, effective vs blobs of infantry and the Krak Missile Launcher (37.5 dps) in T3 effective vs Vehicles.
 10001470	A squad of seasoned Catachan jungle fighters effective in close combat, armed with Shotguns (10.35 piercing DPS, 20 power melee DPS, 40% melee resist). Led by a die last Demoman who carries a grenade launcher for abilities (0 DPS, 20 power melee DPS). Squad can detect and has a versatile range of abilities for crowd control and more. Sarge leader upgrade available in T2.
 10001471	Equipped with a Heavy Bolter that suppresses large groups of infantry, has a limited firing arc and requires set-up time (223.73 suppression DPS). The gunner is die last and the squad can be upgraded to a Lascannon or an Autocannon in T2.
@@ -1482,11 +1482,12 @@
 10001489	A large, durable melee monster that moves faster in synapse (95 heavy melee DPS, 95 DPH + 16 AoE DPH in R 4). Can use the Shieldwall ability, which regenerates health and changes to vehicle armor and Rampage to charge through enemies.
 10001490	An elite melee unit that can tear through even Terminators (30.25 power melee DPS). Can use Adrenal Rush ability and infiltrates when standing still for 4 seconds. Upgrade to Rending Claws available in T3, effective vs vehicles.
 10001491	Elite assassin unit that can Infiltrate, Assault Leap and use the deadly Flesh Hook ability. Detects infiltrated units and caps at 150% of normal rate. (93.75 heavy melee DPS).
-10001492	A living engine of destruction crushing all within reach with claws and talons (100 heavy melee DPS, 200 DPH + 40 AoE DPH in R 4). Can be upgraded to have Thornback Armor, Barbed Strangler, or Venom Cannon.
+10001492	A living engine of destruction crushing all within reach with claws and talons (100 heavy melee DPS, 200 DPH + 40 AoE DPH in R 4). Can be upgraded to have Thornback Armor, Stranglethorn Cannon, or Venom Cannon.
 10001493	Herald of the Great Devourer. A near unstoppable melee monster armed with Bonesabres (120 heavy melee DPS). Emits Basic Synapse and additionally nearby Tyranids in R 30 have speed increased by 1.5. Allies can reinforce in R 40. Swarmlord can use Leech Essence to drain life from surrounding enemies or Blade Flurry to cleave through them.
 10001494	Eldar Seer Council with Empowered Singing Spears
 10001495	Empower Singing Spears
 10001496	Create a persistent tunnel which allied infantry can travel through. Cooldown 120
+10001497    Drop Pod Sternguard Veterans
 10001500	Melee Light Infantry (infantry fire resist armor)
 10001501	Ranged Light Infantry (infantry armor)
 10001502	Melee Synapse Infantry (heavy infantry armor)
@@ -1601,6 +1602,7 @@
 10001705	Building armor
 10001706	Building light armor
 10001707	Building (infantry armor)
+10001708    Support Infantry (infantry armor)
 10009000	Alpha Legion (h8)
 10009001	Alpha Legion, pre-Heresy (h8)
 10009002	Angels of Absolution (h8)
