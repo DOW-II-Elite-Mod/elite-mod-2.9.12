@@ -1,0 +1,746 @@
+--********* MISSION VARIABLES AND CONSTANTS***********
+player_race = Player_GetRaceName(World_GetPlayerAt(1))
+g_hqSave = 1
+
+sg_wave1 = SGroup_CreateIfNotFound("sg_wave1")
+sg_wave2 = SGroup_CreateIfNotFound("sg_wave2")
+sg_wave3 = SGroup_CreateIfNotFound("sg_wave3")
+sg_wave4 = SGroup_CreateIfNotFound("sg_wave4")
+sg_wave5 = SGroup_CreateIfNotFound("sg_wave5")
+sg_wave6 = SGroup_CreateIfNotFound("sg_wave6")
+sg_wave7 = SGroup_CreateIfNotFound("sg_wave7")
+sg_wave8 = SGroup_CreateIfNotFound("sg_wave8")
+sg_wave9 = SGroup_CreateIfNotFound("sg_wave9")
+sg_wave10 = SGroup_CreateIfNotFound("sg_wave10")
+
+sg_wave7_mooks = SGroup_CreateIfNotFound("sg_wave7_mooks")
+sg_fodder = SGroup_CreateIfNotFound("sg_fodder")
+sg_fodder2 = SGroup_CreateIfNotFound("sg_fodder2")
+sg_fodder3 = SGroup_CreateIfNotFound("sg_fodder3")
+sg_lysandros = SGroup_CreateIfNotFound("sg_lysandros")
+sg_ramaeus = SGroup_CreateIfNotFound("sg_rameus")
+
+g_heroLevel = 1 -- this will be changed later
+g_BossMultiFinal = 1 -- as will this
+g_FirstBoss = sbps_camp_ork_boss_maso
+g_eliteOrk = sbps_camp_ork_shoota
+g_MeteorCount = 0
+
+g_intraWaveCount = 0
+g_fieryEncountered = 0
+g_transitionComplete = 0
+g_waveCount = 0
+
+g_BossTypes = {
+	level1 = sbps_camp_ork_boss_maso,
+	level2 = sbps_camp_ork_boss_brakka,
+	level3 = sbps_camp_ork_boss_maso_and_brakka,
+	level4 = sbps_camp_ork_boss_brakk_for_revenge,
+}
+
+g_mookTypes = {
+	level1 = sbps_camp_ork_shoota,
+	level2 = sbps_camp_ork_stormboy,
+	level3 = sbps_camp_ork_kommandos,
+	level4 = sbps_camp_ork_weirdboy,
+}
+
+g_mookTypes2 = {
+	level1 = sbps_camp_csm_tactical_marine,
+	level2 = sbps_camp_csm_havoc,
+	level3 = sbps_camp_csm_dreadnought,
+	level4 = sbps_camp_csm_dreadnought_hg,
+}
+
+--~ Util_ApplyModifier(sg_lysandros, "modifiers\\entity_modifiers\\speed_maximum_modifier", g_BossMultiFinal, MUT_Addition)
+--~ Util_ApplyModifier(sg_lysandros, "modifiers\\entity_modifiers\\health_maximum_modifier", (Leveling_GetSquadLevel(SGroup_GetRandomSpawnedSquad(sg_commander)) * 100), MUT_Addition)
+--~ Util_ApplyModifier(sg_lysandros, "modifiers\\weapon_modifiers\\damage_weapon_modifier", g_BossMultiFinal, MUT_Multiplication)
+
+--***********CUSTOM MISCELLANEOUS FUNCTIONS**************
+
+RegisterTrait("AttackEGroup")
+InitializeTraitsAndStates(nil, Ai.Traits.AttackEGroup)
+
+function Ai.Traits.AttackEGroup.Idle.OnEnter(component, data, params)
+	Cmd_AttackEGroup(component.sgroup, params.egroup)
+end
+
+function MTO.events.functions.FirstCamera (event, param)
+	Game_Letterbox (true)
+	Camera_SetInputEnabled (false)
+	Game_FadeToBlack(FADE_OUT, 1)	
+end
+		
+RegisterTrait( "SpawnReinforcements" )
+InitializeTraitsAndStates(nil, Ai.Traits.SpawnReinforcements)
+
+RegisterTrait( "MeleeStance" )
+InitializeTraitsAndStates(nil, Ai.Traits.MeleeStance)
+
+function Ai.Traits.MeleeStance.Idle.OnEnter(component, data, params)
+	Cmd_SquadSetMeleeStance(component.sgroup)
+end
+
+function Ai.Traits.SpawnReinforcements.Combat.OnEnter(component, data, params)
+end
+
+function Ai.Traits.SpawnReinforcements.Combat.Update(component, data, params)
+	if(params.eventIsNotComplete and MTO.events.evals.ObjectiveIsComplete(component,  {Targets = params.eventIsNotComplete} ) == true) then 
+		return
+	end
+	
+	if(not data.reinforced and Squad_IsUnderAttack(SGroup_GetRandomSpawnedSquad(component.sgroup), 5))then
+		local location = params.Location or component.sgroup
+		data.encounter = ScarGameBackend.SpawnEncounter(params.encounter, location, nil, true, true)
+		data.reinforced = true
+	end
+end
+
+RegisterTrait("AttackMove")
+InitializeTraitsAndStates(nil, Ai.Traits.AttackMove)
+
+function Ai.Traits.AttackMove.Idle.OnEnter(component, data, params)
+	local target = SGroup_FromName(params.TargetSG)
+	Cmd_AttackMove(component.sgroup, target)
+end
+
+RegisterTrait( "ChapterColour" ) -- ************************************** Taken from cyrene south. I just like meddling around with the aesthetic appearance of enemies. Can give the illusion of multiple enemy teams.
+InitializeTraitsAndStates(nil, Ai.Traits.ChapterColour) -- ***************
+function Ai.Traits.ChapterColour.Idle.OnEnter(component, data, params)
+	Squad_SetTeamColourByChapter(SGroup_GetSpawnedSquadAt(component.sgroup, 1), params.chapter )
+end
+
+RegisterTrait( "XP3_Scaling" ) -- ************************************** A custom trait i made that adds basic boss/miniboss scaling based on player level.
+InitializeTraitsAndStates(nil, Ai.Traits.XP3_Scaling) -- ***************
+
+function Ai.Traits.XP3_Scaling.Idle.OnEnter(component, data, params)
+	Util_ApplyModifier(SGroup_GetSpawnedSquadAt(component.sgroup, 1), "modifiers\\entity_modifiers\\health_maximum_modifier", (Leveling_GetSquadLevel(SGroup_GetRandomSpawnedSquad(sg_commander)) * 100), MUT_Addition)
+	Util_ApplyModifier(SGroup_GetSpawnedSquadAt(component.sgroup, 1), "modifiers\\weapon_modifiers\\damage_weapon_modifier", g_BossMultiFinal, MUT_Multiplication)
+	Util_ApplyModifier(SGroup_GetSpawnedSquadAt(component.sgroup, 1), "modifiers\\entity_modifiers\\speed_maximum_modifier", g_BossMultiFinal, MUT_Addition)
+end
+
+RegisterTrait( "XP3_OrkBossSpawn" ) -- ************************************** A custom trait i made that spawns Maso/Brakka. It's necessary to do it like this due to the way the vars work.
+InitializeTraitsAndStates(nil, Ai.Traits.XP3_OrkBossSpawn) -- ***************
+
+function Ai.Traits.XP3_OrkBossSpawn.Idle.OnEnter(component, data, params)
+	Rule_AddOneShot(spawn_levelled_boss, 0.5)
+end
+
+RegisterTrait( "Wave10Death" ) -- ************************************** A custom trait i made that spawns Maso/Brakka. It's necessary to do it like this due to the way the vars work.
+InitializeTraitsAndStates(nil, Ai.Traits.Wave10Death) -- ***************
+
+function Ai.Traits.Wave10Death.Dead.OnEnter(component, data)
+
+	local vpos = component.currentPosition
+		
+	if Campaign_HasWargearInInventory(World_GetPBG("wargear\\wargear\\xp2\\campaign\\race_grey_knights\\npc\\gk_ramaeus_weapons"), true) ~= true then
+		World_DropWargearAtPosition(World_GetPlayerAt(1), "wargear\\wargear\\xp2\\campaign\\race_grey_knights\\npc\\gk_ramaeus_weapons", Util_GetPosition(vpos))
+	end
+
+	Rule_AddOneShot(function() g_transitionComplete = 1 end, 1)
+
+end
+
+RegisterTrait( "Wave11Death" ) -- ************************************** A custom trait i made that spawns Maso/Brakka. It's necessary to do it like this due to the way the vars work.
+InitializeTraitsAndStates(nil, Ai.Traits.Wave11Death) -- ***************
+
+function Ai.Traits.Wave11Death.Dead.OnEnter(component, data)
+
+	local vpos = component.currentPosition
+		
+	if Campaign_HasWargearInInventory(World_GetPBG("wargear\\wargear\\xp2\\campaign\\race_chaos\\weapons_melee\\csm_chain_axe_l9_fiery"), true) ~= true then
+		World_DropWargearAtPosition(World_GetPlayerAt(1), "wargear\\wargear\\xp2\\campaign\\race_chaos\\weapons_melee\\csm_chain_axe_l9_fiery", Util_GetPosition(vpos))
+	end
+end
+
+---------------------------------------------------
+--~ INTERNAL FUNCTIONS
+---------------------------------------------------
+
+----
+-- La Musique
+----
+function xp3_arena_music()
+	Sound_PlayMusic("STREAMED_MUSIC/XP2_Campaign/xp2_crater_01", 0.1, 1)
+	Sound_QueueMusic("STREAMED_MUSIC/XP2_Campaign/xp2_t2_arena", 1, 1)	
+end
+
+----
+-- Work out the player level using their commander, and scales some multipliers and stuff based on the result.
+----
+function xp3_player_upgrades()
+	g_heroLevel = Leveling_GetSquadLevel(SGroup_GetRandomSpawnedSquad(sg_commander))
+	print(g_heroLevel)
+	if g_heroLevel > 4 then
+		g_BossMultiFinal = 1.2
+		g_FirstBoss = g_BossTypes.level2
+		g_eliteOrk = g_mookTypes.level2
+	end
+	if g_heroLevel > 6 then
+		g_BossMultiFinal = 1.5
+		g_FirstBoss = g_BossTypes.level3
+		g_eliteOrk = g_mookTypes.level3
+	end
+	if g_heroLevel > 7 then
+		g_BossMultiFinal = 2
+		g_FirstBoss = g_BossTypes.level4
+		g_eliteOrk = g_mookTypes.level4
+	end
+
+	Cmd_InstantPlayerUpgrade(World_GetPlayerAt(1), Util_GetUpgradeID("upgrade\\xp2\\campaign\\army_builder\\global_1"))
+	--~ Cmd_InstantPlayerUpgrade(World_GetPlayerAt(2), Util_GetUpgradeID("upgrade\\xp2\\campaign\\army_builder\\global_1"))
+
+	-- DEV STUFF -- i'm gonna kms if i have to do all these waves just to test waves 8-10 again
+	-- Util_ApplyModifier(sg_hero4, "modifiers\\weapon_modifiers\\damage_ranged_weapon_modifier", 2.0, MUT_Multiplication)
+	-- Util_ApplyModifier(sg_allheroes, "modifiers\\entity_modifiers\\received_damage_modifier", 0.01, MUT_Multiplication)
+	-- Util_ApplyModifier(sg_allheroes, "modifiers\\weapon_modifiers\\damage_weapon_modifier", 4, MUT_Multiplication)
+
+end
+
+function xp3_debug()
+	print("boss multiplier:"..g_BossMultiFinal) -- check this updated correctly
+	print("hero level:".. g_heroLevel)
+	print("first boss ".. g_FirstBoss)
+	print("mook archetype:".. g_eliteOrk)
+end
+
+function Generic_MoveAway()
+	if SGroup_IsEmpty(sg_wave7) == false then
+		Cmd_Move(sg_wave7, Marker_GetRandomPosition(mkr_PlayerStart))
+	end
+end
+
+--~ called by an MTO function, it cannot be nested apparently
+function fireMeteors()
+	g_MeteorCount = g_MeteorCount + 1
+	local TargetPos = Util_GetRandomPosition(SGroup_GetRandomSpawnedSquad(sg_allheroes), 75, 0)
+	Cmd_PlayerAbilityPos(World_GetPlayerAt(3), abil_camp_csm_daemon_prince_9_hurt_rocks, TargetPos, true)
+	if g_MeteorCount > 4 then
+		g_MeteorCount = 0
+		Rule_RemoveMe()
+	end
+end
+
+function spawn_levelled_boss()
+	local local_boss_spawn = function()
+		local t_event = event
+		local t_param = {
+			--~ marker = Marker_FromName("mkr_center", ""), -- i don't think we need this, may mess up co-ords ever so slightly if we do use it.
+			spawnList = {
+				{
+					sbp = g_FirstBoss,
+					--~ level = 10,
+					playerOwner = 4,
+					assignSGroup = { "sg_wave1" },
+					numSquads = 1;
+					squadSize = 2;
+					traits = {
+						{ name = "ChapterColour", chapter = "Ork_Bigchoppaz_warband"},
+						"Combatant",
+						"Raider",
+					},
+					offset = Util_GetPosition(mkr_spawn_2),
+				},
+				{
+					sbp = g_eliteOrk,
+					--~ level = 10,
+					playerOwner = 4,
+					assignSGroup = { "sg_wave1" },
+					numSquads = 1;
+					squadSize = 3;
+					traits = {
+						{ name = "ChapterColour", chapter = "Ork_Bigchoppaz_warband"},
+						"Combatant",
+						"Raider",
+					},
+					offset = Util_GetPosition(mkr_spawn_2),
+				},
+			},
+		}
+		MTO.events.functions.SpawnEncounters (t_event, t_param)
+	end
+	Rule_AddOneShot(local_boss_spawn, 0.1)
+end
+---------------------------------------------------
+--~ MTO FUNCTIONS
+---------------------------------------------------
+
+function Bluddflagg_SuckIn(actiontable, target, component)
+
+	Cmd_SquadAbility(component.sgroup, abil_camp_ork_warboss_offense_3_suck_in_aoe_ladon, true)--[ [, target, true]]
+
+	if Rule_Exists(Generic_MoveAway) == false then
+		Rule_AddOneShot(Generic_MoveAway, 2)
+	
+	end
+end
+
+function Bluddflagg_AOEDamageStomp(actiontable, target, component)
+
+	Cmd_SquadAbility(component.sgroup, abil_camp_ork_warboss_offense_1_damage_aoe_stomp_ladon, true)--[ [, target, true]]
+	
+	if Rule_Exists(Generic_MoveAway) == false then
+		Rule_AddOneShot(Generic_MoveAway, 2)
+	
+	end
+	
+
+end
+
+function Bluddflagg_GroundPound(actiontable, target, component)
+
+	--Cmd_Ability(component.sgroup, abil_camp_ork_warboss_offense_5_stun_aoe_bigstomp_targeted_ladon)--[ [, target, true]]
+	Cmd_SquadAbility(component.sgroup, abil_camp_ork_warboss_offense_5_stun_aoe_bigstomp_ladon, true)--[ [, target, true]]
+	--fatal("SDFSDFSD")
+	
+	if Rule_Exists(Generic_MoveAway) == false then
+		Rule_AddOneShot(Generic_MoveAway, 2)
+	
+	end
+	
+
+end
+
+
+function Bluddflagg_Stikkbombs(actiontable, target, component)
+
+	if SGroup_CountSpawned(sg_allheroes) >= 1 then
+		local tempsquadID = SGroup_GetRandomSpawnedSquad(sg_allheroes)
+		local sg_temp = SGroup_CreateIfNotFound("sg_temp")
+		SGroup_Add(sg_temp, tempsquadID)
+		--SGroup_AddGroup(sg_temp, tempsquadID)
+		
+		if Prox_SGroupSGroup(sg_temp, component.sgroup, PROX_SHORTEST) <= 20 then
+		
+			Cmd_Ability(component.sgroup, abil_camp_ork_damage_aoe_stikkbomb_ladon, sg_temp, true)--[ [, target, true]]	
+			
+		else
+		
+			Cmd_Attack(component.sgroup, sg_temp)
+		
+		end
+		
+		SGroup_Clear(sg_temp)
+		
+		if Rule_Exists(Generic_MoveAway) == false then
+			
+			Rule_AddOneShot(Generic_MoveAway, 2)
+		
+		end
+		
+	end
+	
+end
+
+----
+-- Summon in some bloodletters that A-Move towards the heroes
+----
+function MTO.events.functions.SpreadChaos(event, param)
+	local TargetPos = Util_GetRandomPosition(Util_GetPosition(mkr_centre), 25, 0)
+
+	local startWarningFX = function()
+		ModMisc_TriggerDcaAction("UI\\AOE\\aoe_chaos_targeting", 10, TargetPos, World_GetPlayerAt(3))
+	end
+
+	local spawnLetters = function ()
+		Util_CreateSquads(World_GetPlayerAt(3), sg_fodder, sbps_camp_csm_bloodletters, 1, TargetPos)
+	end
+
+	local mooksAttack2 = function ()
+		if SGroup_IsEmpty(sg_fodder) == false then
+			Cmd_AttackMove(sg_fodder, Util_GetRandomPosition(SGroup_GetRandomSpawnedSquad(sg_allheroes), 10, 5))
+		end
+	end
+	
+	Rule_AddOneShot(startWarningFX, 1)
+	Rule_AddOneShot(spawnLetters, 5)
+	Rule_AddOneShot(mooksAttack2, 6)
+end
+
+----
+-- Summon in some bloodletters that attack something in wave 5, or A-Move to your heroes if that fails.
+----
+function MTO.events.functions.SpreadChaos2(event, param)
+	local TargetPos = Util_GetRandomPosition(Util_GetPosition(mkr_centre), 25, 0)
+
+	local startWarningFX = function()
+		ModMisc_TriggerDcaAction("UI\\AOE\\aoe_chaos_targeting", 10, TargetPos, World_GetPlayerAt(3))
+	end
+
+	local spawnLetters = function ()
+		Util_CreateSquads(World_GetPlayerAt(3), sg_fodder, sbps_camp_csm_bloodletters, 1, TargetPos)
+	end
+
+	local mooksAttack3 = function ()
+		if SGroup_IsEmpty(sg_fodder) == false then
+			if SGroup_IsEmpty(sg_wave5) == true then
+				Cmd_AttackMove(sg_fodder, Util_GetRandomPosition(SGroup_GetRandomSpawnedSquad(sg_allheroes), 10, 5))
+			end
+			if SGroup_IsEmpty(sg_wave5) == false then
+				Cmd_Attack(sg_fodder, SGroup_GetRandomSpawnedSquad(sg_wave5))
+			end
+		end
+	end
+	
+	Rule_AddOneShot(startWarningFX, 18)
+	Rule_AddOneShot(spawnLetters, 21)
+	Rule_AddOneShot(mooksAttack3, 22)
+end
+
+----
+-- METEOR! Casts between 5-50m away from one of your squads.
+----
+function MTO.events.functions.Meteor(event, param)
+	local TargetPos = Util_GetRandomPosition(SGroup_GetRandomSpawnedSquad(sg_allheroes), 50, 5)
+
+	local fireMeteors = function ()
+		Cmd_PlayerAbilityPos(World_GetPlayerAt(3), abil_camp_csm_daemon_prince_9_hurt_rocks, TargetPos, true)
+	end
+
+	Rule_AddOneShot(fireMeteors, 5)
+end
+
+----
+-- Does it need explanation?! METEORS! Each meteor nuke targets a location somewhere between 0-75m away from one of your squads.
+----
+function MTO.events.functions.MeteorShower(event, param)
+
+	Rule_AddInterval(fireMeteors, 15)
+end
+
+----
+-- Init function: Spawn some duelling guys for ambience.
+----
+function MTO.events.functions.spawnGladiators(event, param)
+	local spawnMooks = function ()
+		local TargetPos = Util_GetRandomPosition(Util_GetPosition(mkr_centre), 50, 25)
+		Util_CreateSquads(World_GetPlayerAt(5), sg_fodder, sbps_camp_tyr_hormagaunt, 1, TargetPos)
+		Util_CreateSquads(World_GetPlayerAt(4), sg_fodder2, sbps_camp_ork_slugga, 1, TargetPos)
+		Util_CreateSquads(World_GetPlayerAt(3), sg_fodder3, sbps_camp_csm_bloodletters, 1, TargetPos)
+	end
+
+	local mooksAttack = function ()
+		if SGroup_IsEmpty(sg_fodder) == false then
+
+			if SGroup_IsEmpty(sg_fodder2) == false then
+
+				if SGroup_IsEmpty(sg_fodder3) == false then
+					Cmd_Attack(sg_fodder2, sg_fodder3)
+					Cmd_Attack(sg_fodder, sg_fodder3)
+					Cmd_Attack(sg_fodder3, sg_fodder)
+				end
+
+			end
+		end
+	end
+	
+	Rule_AddOneShot(spawnMooks, 0.1)
+	Rule_AddOneShot(mooksAttack, 0.5)
+end
+
+----
+-- Several Squads in Wave 10 have a fodder SGroup that is used by this function to force two fodder squads to duel each other.
+----
+function MTO.events.functions.Infight(event, param)
+	local mooksAttack4 = function ()
+		if SGroup_IsEmpty(sg_fodder) == false then
+			if SGroup_IsEmpty(sg_fodder2) == false then
+				Cmd_Attack(sg_fodder2, sg_fodder)
+				Cmd_Attack(sg_fodder, sg_fodder2)
+			end
+			if SGroup_IsEmpty(sg_fodder3) == false then
+				Cmd_Attack(sg_fodder3, sg_fodder)
+			end
+		end
+	end
+	
+	Rule_AddInterval(mooksAttack4, 6)
+end
+
+----
+-- Lysandros's speed, damage and health is buffed depending on how high level the player is.
+----
+function MTO.events.functions.xp3_bossMulti_lysandros(event, param)
+	local scaling = function ()
+	Util_ApplyModifier(sg_lysandros, "modifiers\\entity_modifiers\\speed_maximum_modifier", g_BossMultiFinal, MUT_Addition)
+	Util_ApplyModifier(sg_lysandros, "modifiers\\entity_modifiers\\health_maximum_modifier", (Leveling_GetSquadLevel(SGroup_GetRandomSpawnedSquad(sg_commander)) * 100), MUT_Addition)
+	Util_ApplyModifier(sg_lysandros, "modifiers\\weapon_modifiers\\damage_weapon_modifier", g_BossMultiFinal, MUT_Multiplication)
+	end
+	Rule_AddOneShot(scaling, 32)
+end
+
+----
+-- Bluddflagg's ranged damage (his power klaw is already competent at all stages as it is a level 8 weapon) and health is buffed depending on how high level the player is.
+----
+function MTO.events.functions.xp3_bossMulti_bluddflagg(event, param)
+	local scaling = function ()
+	Util_ApplyModifier(sg_wave7_mooks, "modifiers\\entity_modifiers\\health_maximum_modifier", (Leveling_GetSquadLevel(SGroup_GetRandomSpawnedSquad(sg_commander)) * 200), MUT_Addition)
+	Util_ApplyModifier(sg_wave7_mooks, "modifiers\\weapon_modifiers\\damage_ranged_weapon_modifier", g_BossMultiFinal, MUT_Multiplication)
+	end
+	Rule_AddOneShot(scaling, 2)
+end
+
+----
+-- Ramaeus's ranged damage, speed and health is buffed depending on how high level the player is.
+----
+function MTO.events.functions.xp3_bossMulti_ramaeus(event, param)
+	local scaling = function ()
+	Util_ApplyModifier(sg_ramaeus, "modifiers\\entity_modifiers\\health_maximum_modifier", (Leveling_GetSquadLevel(SGroup_GetRandomSpawnedSquad(sg_commander)) * 100), MUT_Addition)
+	Util_ApplyModifier(sg_ramaeus, "modifiers\\weapon_modifiers\\damage_ranged_weapon_modifier", g_BossMultiFinal, MUT_Multiplication)
+	Util_ApplyModifier(sg_ramaeus, "modifiers\\entity_modifiers\\speed_maximum_modifier", g_BossMultiFinal, MUT_Addition)
+	end
+	Rule_AddOneShot(scaling, 27)
+end
+
+function MTO.events.functions.xp3_init(event, param)
+	Sound_SetAndLockMusicCombatValue(0)
+	Rule_AddOneShot(xp3_arena_music, 1)
+	Rule_AddOneShot(xp3_player_upgrades, 1.5)
+	Rule_AddOneShot(xp3_debug, 2.5)
+end
+
+---*********RANDOMISATION OF UNITS******************---
+
+function MTO.events.functions.xp3_wave_caller(event, param)
+    Rule_AddDelayedInterval(xp3_spawn_randomized_wave, 30, 10)
+end
+
+function xp3_randomized_wave()
+    Rule_AddOneShot(xp3_spawn_randomized_wave, 15, 1)	
+    Rule_RemoveMe ()	
+end
+
+function xp3_spawn_randomized_wave()
+
+   local randMarker = Util_GetPosition(mkr_spawn_1)
+   local randMarker2 = Util_GetPosition(mkr_spawn_1)
+
+    local numChucka = World_GetRand(1,8)
+    if numChucka == 1 then
+    	g_randomised_infantry = sbps_camp_tyr_genestealer
+    elseif numChucka == 2 then
+    	g_randomised_infantry = sbps_camp_csm_tactical_marine
+    elseif numChucka == 3 then
+    	g_randomised_infantry = sbps_camp_sm_assault_marine
+    elseif numChucka == 4 then
+    	g_randomised_infantry = sbps_camp_ig_kasrkin_squad
+    elseif numChucka == 5 then
+    	g_randomised_infantry = sbps_camp_ig_heavy_weapon_squad
+    elseif numChucka == 6 then
+    	g_randomised_infantry = sbps_camp_csm_xp3_raptor
+    elseif numChucka == 7 then
+    	g_randomised_infantry = sbps_camp_tyr_ravener
+    else
+    	g_randomised_infantry = sbps_camp_csm_bloodletters
+    end
+
+    numChucka2 = World_GetRand(1,8)
+    if numChucka2 == 1 then
+    	g_randomised_specialist = sbps_camp_csm_aspiring_champion
+                randMarker = Util_GetPosition(mkr_spawn_2)
+    elseif numChucka2 == 2 then
+    	g_randomised_specialist = sbps_camp_csm_bloodletters
+                randMarker = Util_GetPosition(mkr_spawn_3)
+    elseif numChucka2 == 3 then
+    	g_randomised_specialist = sbps_camp_tyr_warrior_melee_heavy
+                randMarker = Util_GetPosition(mkr_spawn_4)
+    elseif numChucka2 == 4 then
+    	g_randomised_specialist = sbps_camp_csm_xp3_raptor
+                randMarker = Util_GetPosition(mkr_spawn_5)
+    elseif numChucka2 == 5 then
+    	g_randomised_specialist = sbps_camp_csm_dreadnought
+                randMarker = Util_GetPosition(mkr_spawn_3)
+    elseif numChucka2 == 6 then
+    	g_randomised_specialist = sbps_camp_csm_bloodcrusher
+                randMarker = Util_GetPosition(mkr_spawn_1)
+    elseif numChucka2 == 7 then
+    	g_randomised_specialist = sbps_camp_sm_dreadnought_assault
+                randMarker = Util_GetPosition(mkr_spawn_1)
+    else
+    	g_randomised_specialist = sbps_camp_ig_ogryn_squad
+    end
+
+    numChucka3 = World_GetRand(1,7)
+    if numChucka3 == 1 then
+    	g_randomised_boss = sbps_camp_sm_venerable_dreadnought
+                randMarker2 = Util_GetPosition(mkr_spawn_2)
+    elseif numChucka3 == 2 then
+    	g_randomised_boss = sbps_camp_csm_predator
+                randMarker2 = Util_GetPosition(mkr_spawn_3)
+    elseif numChucka3 == 3 then
+    	g_randomised_boss = sbps_camp_csm_dreadnought_hg
+                randMarker2 = Util_GetPosition(mkr_spawn_4)
+    elseif numChucka3 == 4 then
+    	g_randomised_boss = sbps_camp_sm_boss_terminator
+                randMarker2 = Util_GetPosition(mkr_spawn_5)
+    elseif numChucka3 == 5 then
+    	g_randomised_boss = sbps_camp_gk_boss_eversor
+                randMarker2 = Util_GetPosition(mkr_spawn_2)
+    elseif numChucka3 == 6 then
+    	g_randomised_boss = sbps_camp_tyr_carnifex
+    else
+    	g_randomised_boss = sbps_camp_ig_leman_russ
+    end
+
+   local damageMod = (1  + (g_waveCount/10)) --~ so on wave 5 it becomes +50%
+   local speedMod = (1  + (g_waveCount/25)) --~ so on wave 5 it becomes +20%
+   print("damage and health bonus is: ".. damageMod)
+   print("speed bonus is: ".. speedMod)
+
+    local t_event = event
+	local t_param = {
+		spawnList = {
+			{
+				sbp = g_randomised_infantry,
+				playerOwner = 3,
+				squadSize = 8,
+                				assignSGroup = {"sg_allEnemies"},
+				offset = randMarker,
+				traits = {
+					"Combatant",
+					{ name = "ChapterColour", chapter = "Relic"},
+					"Raider",
+				},
+				upgrades = {
+					"upgrade/xp2/campaign/race_chaos/troops/csm_random_wargear_infantry",
+				},
+				modifiers = {
+							{
+								modType = "modifiers\\weapon_modifiers\\damage_weapon_modifier", 
+								exclusive = false, 
+								value = damageMod,
+							},
+							{
+								modType = "modifiers\\entity_modifiers\\health_maximum_modifier", 
+								exclusive = false, 
+								value = damageMod,
+							},
+							{
+								modType = "modifiers\\entity_modifiers\\speed_maximum_modifier", 
+								exclusive = false, 
+								value = speedMod,
+							},
+						},
+			},
+
+			{
+				sbp = g_randomised_infantry,
+				playerOwner = 3,
+				squadSize = 8,
+                				assignSGroup = {"sg_allEnemies"},
+				offset = randMarker2,
+				traits = {
+					"Combatant",
+					{ name = "ChapterColour", chapter = "Relic"},
+					"Raider",
+				},
+				upgrades = {
+					"upgrade/xp2/campaign/race_chaos/troops/csm_random_wargear_infantry",
+				},
+				modifiers = {
+							{
+								modType = "modifiers\\weapon_modifiers\\damage_weapon_modifier", 
+								exclusive = false, 
+								value = damageMod,
+							},
+							{
+								modType = "modifiers\\entity_modifiers\\health_maximum_modifier", 
+								exclusive = false, 
+								value = damageMod,
+							},
+							{
+								modType = "modifiers\\entity_modifiers\\speed_maximum_modifier", 
+								exclusive = false, 
+								value = speedMod,
+							},
+						},
+			},
+            {
+				sbp = g_randomised_specialist,
+				playerOwner = 3,
+				squadSize = 3,
+                				numSquads = 1,
+				assignSGroup = {"sg_allEnemies"},
+				offset = randMarker2,
+				traits = {
+					"Combatant",
+					{ name = "ChapterColour", chapter = "Relic"},
+					"Raider",
+				},
+				upgrades = {
+					"upgrade/xp2/campaign/race_chaos/troops/csm_random_wargear_infantry",
+				},
+				modifiers = {
+							{
+								modType = "modifiers\\weapon_modifiers\\damage_weapon_modifier", 
+								exclusive = false, 
+								value = damageMod,
+							},
+							{
+								modType = "modifiers\\entity_modifiers\\health_maximum_modifier", 
+								exclusive = false, 
+								value = damageMod,
+							},
+							{
+								modType = "modifiers\\entity_modifiers\\speed_maximum_modifier", 
+								exclusive = false, 
+								value = speedMod,
+							},
+						},
+			},
+		},
+	}
+
+    local t_event2 = event
+	local t_param2 = {
+		spawnList = {
+            {
+				sbp = g_randomised_boss,
+				playerOwner = 3,
+				squadSize = 1,
+                				numSquads = 1,
+				assignSGroup = {"sg_allEnemies"},
+				offset = randMarker,
+				traits = {
+					"Combatant",
+					{ name = "ChapterColour", chapter = "Chaos_WorldEaters"},
+					"Raider",
+				},
+				upgrades = {
+							"upgrade/xp2/campaign/race_chaos/troops/csm_random_wargear_boss_hellscape",
+				},
+						wargear = {
+							"wargear\\wargear\\xp2\\campaign\\race_chaos\\accessories\\csm_boss_effect_and_aura_endless",
+						},
+				modifiers = {
+							{
+								modType = "modifiers\\weapon_modifiers\\damage_weapon_modifier", 
+								exclusive = false, 
+								value = damageMod,
+							},
+							{
+								modType = "modifiers\\entity_modifiers\\health_maximum_modifier", 
+								exclusive = false, 
+								value = damageMod,
+							},
+							{
+								modType = "modifiers\\entity_modifiers\\speed_maximum_modifier", 
+								exclusive = false, 
+								value = speedMod,
+							},
+						},
+			},
+		},
+	}
+    print("dynamic wave count: "..SGroup_Count(SGroup_CreateIfNotFound("sg_allEnemies")) )
+    if SGroup_Count(SGroup_CreateIfNotFound("sg_allEnemies")) < 4 then
+    	MTO.events.functions.SpawnEncounters (t_event, t_param)
+                 g_intraWaveCount = g_intraWaveCount + 1
+                 if g_intraWaveCount == 3 then
+		MTO.events.functions.SpawnEncounters (t_event2, t_param2)
+                   	g_intraWaveCount = 0
+		g_waveCount = g_waveCount + 1
+	    end
+   end
+
+end
