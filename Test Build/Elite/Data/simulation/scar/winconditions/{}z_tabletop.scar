@@ -1,0 +1,103 @@
+import("WinCondition.scar")
+import("ScarUtil.scar")
+
+abil_pvp_gm_tt = World_GetPropertyBagGroupID("ability/pvp/game_mode_packs/game_tabletop_mode")
+
+obp_labor_engine_barrels = World_GetPropertyBagGroupID("ebps/world_objects/vehicles/labor_engine_barrels")
+
+function WinCondition_OnInit()
+	WinCondition_StartupAnnihilate()
+	WinCondition_StartupVictoryPointsTT()
+	Camera_SetGameplayCameraTuningValue( CGTT_MaximumDistance, 60 )
+	TT_CustomRule()
+
+end
+Scar_AddInit( WinCondition_OnInit )
+
+
+--~ Custom annihilate rules where you pre-make your army at the start.
+
+function TT_CustomRule()
+
+	Skirmish_Start()
+
+	for i = 1, World_GetPlayerCount() do
+		local player = World_GetPlayerAt( i )
+
+		Cmd_PlayerAbility(player, abil_pvp_gm_tt, true)
+
+		Player_SetResource(player, RT_Requisition, 3500)
+		Player_SetResource(player, RT_Power, 1000)
+		Player_SetResource(player, RT_Waaagh, 350)
+
+		Modify_PlayerResourceRate(player, RT_Requisition, 0)
+		Modify_PlayerResourceRate(player, RT_Power, 0)
+
+	end
+
+	WinCondition_HaveFunWithStratPoints()
+end
+
+
+function IsAIPlayerPresent()
+
+	local isAI = false
+
+	local count = World_GetPlayerCount()
+
+	for i = 1, count do
+		local player = World_GetPlayerAt(i)
+		if Misc_IsHumanPlayer(player) == false then
+			isAI = true
+		end
+	end
+
+	return isAI
+end
+
+--~ Strat points and power nodes will be replaced with other kinds of fun things if no AI player is present, as they are useless in this game mode. I will try to find a way to overcome the AI limitations in other ways.
+
+function WinCondition_HaveFunWithStratPoints()
+	local count = World_GetNumEntities()
+	junkEGroup = EGroup_CreateIfNotFound("junkEGroup")
+
+	for i = 0, (count-1) do
+		local entity = World_GetEntity( i )
+		local ent_pos = Entity_GetPosition(entity)
+
+		if Entity_IsVictoryPoint( entity ) == false then
+			if Entity_IsStrategicPoint( entity ) and (IsAIPlayerPresent() == false) then
+				Entity_Delete( entity )
+				Util_CreateEntitiesAtMarker(nil, junkEGroup, obp_labor_engine_barrels, ent_pos , 1, ent_pos)
+			end
+		end
+
+
+		if (Entity_IsOfType( entity, "TurretArmorXP2" ) or Entity_IsOfType( entity, "turret" )) then
+			Entity_Delete( entity )
+		end
+	end
+end
+
+function WinCondition_StartupVictoryPointsTT()
+	Skirmish_Start()
+	
+	WinCondition_VPData = {}
+
+	for i = 1, World_GetPlayerCount() do
+		local player = World_GetPlayerAt( i )
+		local teamID = Player_GetTeam( player )
+		WinCondition_VPData[ teamID + 1 ] = 
+		{
+			teamID = teamID,
+			player = player,
+			tickerValue = 150,
+			VP_held = 0,
+			all_VP_held_beats = 0,
+			warning_name = "vp_team"..tostring(teamID + 1)
+		}
+	end	
+
+	Rule_AddInterval( WinCondition_VPHeartbeat, sk_WinCondition_VPHeartbeat_interval )
+	Rule_AddInterval( WinCondition_ConcessionSuccessfulVP, sk_WinCondition_VPHeartbeat_interval )
+end

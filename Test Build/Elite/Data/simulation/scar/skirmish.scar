@@ -1,0 +1,369 @@
+import("ScarUtil.scar")
+import("SkirmishQuickTips.scar")
+import("elite/worship.scar")
+import("elite/abilities.scar")
+import("elite/elite.scar")
+
+function Skirmish_Start()
+	if skirmish_initialized then
+		return
+	end
+	
+	skirmish_initialized = true
+	
+	-- This function clamps the camera to the marker, if one exists. Otherwise it does nothing. Always use "mkr_cameraclamp"; this was put in to offset the 
+	-- fact that the edges of some of the multiplayer maps look like they're playable.
+	if scartype(mkr_cameraclamp) == ST_MARKER then
+
+		Camera_ClampToMarker(mkr_cameraclamp)
+
+	end
+
+	-- Make the player hqs invulnerable
+	local world_num_entities = World_GetNumEntities()
+	for i = 0, world_num_entities-1 do
+		local entity = World_GetEntity( i )
+		if Entity_IsStartingPosition( entity ) then
+			Entity_SetInvulnerable( entity, true, 0 )
+		end
+	end
+
+	-- Listen to squads created
+	Rule_AddEvent( Skirmish_GE_SquadCreated, GE_SquadCreated )
+	
+	-- Listen to squads die
+	Rule_AddEvent( Skirmish_GE_SquadKilled, GE_SquadKilled )
+	
+	-- Listen to entities going unconcious, since they may be heroes we need to revive.
+	Rule_AddEvent( Skirmish_GE_EntityUnconcious, GE_EntityUnconscious )
+	
+	-- Listen to Multi-Target abilities being used
+	Rule_AddEvent( Skirmish_GE_MultiTargUsed, GE_AbilityExecuted)
+	
+	-- Check for respawning heroes
+	Rule_AddInterval( Skirmish_Interval_HeroRespawn, 1 )
+
+	if Misc_QuickTipsEnabled() then
+		Rule_AddInterval( Skirmish_UpdateQuickTips, 1 )
+	end
+	
+	Skirmish_RespawnQueue = {}
+	
+	-- Setup the initial player squads
+	if Game_HasLocalPlayer() then	
+		local localPlayer = Game_GetLocalPlayer()	
+		local squads = Player_GetSquads( localPlayer )
+		
+		local _SetupHeroSquad = function (gid, idx, sid)
+			local squad_sbp = Squad_GetBlueprintName( sid )
+
+			if (Skirmish_IsHeroSBP( squad_sbp )) then	
+				Skirmish_SetupSquad( sid )
+			end
+		end
+		local _SetupRegularSquad = function (gid, idx, sid)	
+			local squad_sbp = Squad_GetBlueprintName( sid )
+
+			if (not Skirmish_IsHeroSBP( squad_sbp )) then	
+				Skirmish_SetupSquad( sid )
+			end
+		end
+		
+		-- NOTE: do heroes first to get first control groups
+		SGroup_ForEach( squads, _SetupHeroSquad )
+		SGroup_ForEach( squads, _SetupRegularSquad )
+	end
+	
+	Game_ScreenFade( 0, 0, 0, 0, 3 )
+end
+
+function Skirmish_IsHeroSBP( sbp )
+	local sbp_name = string.lower( sbp )
+	return string.find( sbp_name, '\\heroes\\' ) ~= nil
+end
+
+function Skirmish_GE_SquadCreated( squad )	
+	-- This event can fire *after* our SCAR functions have been unbound. 
+	if Game_HasLocalPlayer == nil or Game_HasLocalPlayer() == false then
+		return
+	end
+	
+	local localPlayer 	= Game_GetLocalPlayer()
+	local localPlayerID = -1
+	local squadOwner	= nil
+	local squadOwnerID 	= -1  
+	
+	if localPlayer ~= nil then
+		localPlayerID = Player_GetID( localPlayer )
+	end
+	
+	if squad ~= nil then
+		squadOwner = Util_GetPlayerOwner( squad )
+	end
+	
+	if squadOwner ~= nil then		
+		squadOwnerID = Player_GetID( squadOwner )
+	end
+		
+	if localPlayerID >= 0 and localPlayerID == squadOwnerID then		
+		Skirmish_SetupSquad( squad )
+	end
+end
+
+function Skirmish_GE_MultiTargUsed(abilityFired, playerFired, targetEntity)
+		
+	if Game_HasLocalPlayer() then	
+		local localPlayer = Game_GetLocalPlayer()
+		
+		if g_multiTargUsed == true then
+		
+			Rule_RemoveMe()
+		else
+		
+			if (abilityFired == World_GetPropertyBagGroupID("ability\\pvp\\race_eldar\\globals\\eld_spawn_autarch") and Player_GetID(playerFired) == Player_GetID(localPlayer))or (abilityFired == World_GetPropertyBagGroupID("ability\\pvp\\race_marine\\globals\\sm_damage_aoe_orbital_picktargets") and Player_GetID(playerFired) == Player_GetID(localPlayer))
+				or (abilityFired == World_GetPropertyBagGroupID("ability\\pvp\\race_imperial_guard\\manticore\\ig_manticore_shot") and Player_GetID(playerFired) == Player_GetID(localPlayer)) then
+			
+				g_multiTargUsed = true
+			
+			end
+		end
+	else
+	
+		Rule_RemoveMe()
+	end
+end
+
+function Skirmish_GE_SquadKilled( squad, lastEntityStanding )	
+	-- This event can fire *after* our SCAR functions have been unbound. 
+	if Game_HasLocalPlayer == nil or Game_HasLocalPlayer() == false then
+		return
+	end
+	
+	local localPlayer 	= Game_GetLocalPlayer()
+	local localPlayerID = -1
+	local squadOwner	= nil
+	local squadOwnerID 	= -1
+	
+	if localPlayer ~= nil then
+		localPlayerID = Player_GetID( localPlayer )
+	end
+	
+	if squad ~= nil then
+		squadOwner = Util_GetPlayerOwner( squad )
+	end
+	
+	if squadOwner ~= nil then		
+		squadOwnerID = Player_GetID( squadOwner )
+	end
+		
+	if localPlayerID >= 0 and localPlayerID == squadOwnerID then		
+		Elite.event.squad_killed(squad, lastEntityStanding)
+	end
+end
+
+function Skirmish_GE_EntityUnconcious( victim_entity, killer_entity )
+	
+	local victim_squad = Entity_GetSquad( victim_entity )
+	
+	if not Skirmish_IsHeroSBP( Squad_GetBlueprintName(victim_squad) ) then
+		return
+	end
+
+	-- display a message saying who killed who
+	local message = Loc_Empty()
+	
+	local player_victim_name = Misc_GetPlayerNameLocalized( Entity_GetPlayerOwner( victim_entity ) )
+	if killer_entity ~= nil then
+		local player_killer = Entity_GetPlayerOwner( killer_entity )
+		if (player_killer ~= nil) then		
+			local player_killer_name = Misc_GetPlayerNameLocalized( player_killer )
+			message = Loc_FormatText ( 9020791 , player_killer_name, player_victim_name) -- LOCDB [9020791] '%1player_killer_name% has killed %2player_victim_name%'
+		else
+			message = Loc_FormatText( 146714, player_victim_name ) -- LOCDB [146714]
+		end
+	else
+		message = Loc_FormatText( 146714, player_victim_name ) -- LOCDB [146714]
+	end
+
+	-- Don't pass the entity ID, since the guy will stand still, but if he resurrects quickly you can still follow his position even if you are an opponent (through the fog of war)
+	UI_CreateEventCueWithPosition( "hud/intel_panel/event_icon_killed", message, Entity_GetPosition( victim_entity ), 0, false )
+
+	-- Setup for the respawn.
+	local new_respawn_queue = {}
+	local new_entry = { entity = Entity_GetGameID(victim_entity) }
+	
+	for i, v in pairs( Skirmish_RespawnQueue ) do
+		if v.entity == new_entry.entity then
+			new_respawn_queue[i] = new_entry
+			new_entry = nil
+		else
+			new_respawn_queue[i] = v
+		end
+	end
+
+	if new_entry ~= nil then
+		table.insert( new_respawn_queue, new_entry )
+	end
+
+	Skirmish_RespawnQueue = new_respawn_queue
+
+end
+
+function Skirmish_Interval_HeroRespawn()
+
+	local new_respawn_queue = {}
+
+	for i, v in pairs( Skirmish_RespawnQueue ) do
+		if not Entity_IsValid(v.entity) then
+			-- Do nothing, skip this entity.
+		elseif Entity_IsUnconscious(Entity_FromWorldID(v.entity)) then
+			-- Keep in the queue to keep checking if our hero has been revived
+			table.insert( new_respawn_queue, v )
+		elseif not Entity_IsUnconscious(Entity_FromWorldID(v.entity)) then
+			local player = Entity_GetPlayerOwner( Entity_FromWorldID(v.entity) )
+			if Player_IsValid( player ) and Player_IsAlive( player ) then
+				local entity = Entity_FromWorldID(v.entity)
+				local squad = Entity_GetSquad( entity )
+				
+				if Entity_GetHealth(entity) == Entity_GetHealthMax(entity) then
+					message = Loc_FormatText( 9099180, Misc_GetPlayerNameLocalized( player ) )
+					UI_CreateEventCueWithPosition( "hud/intel_panel/event_icon_respawn", message, Entity_GetPosition( entity ), Entity_GetGameID( entity ), true )
+				end								
+			end
+		end
+	end
+
+	Skirmish_RespawnQueue = new_respawn_queue
+
+end
+
+function Skirmish_SetupSquad( squadID )
+	local preferredIndex = -1;
+	local squad_sbp = Squad_GetBlueprintName( squadID )
+
+	if Skirmish_IsHeroSBP( squad_sbp ) then
+		preferredIndex = -2;
+	end
+	
+	UI_AddSquadTab( squadID, preferredIndex )
+	Elite.event.squad_created(squadID)
+end
+
+function Skirmish_StopSquad (caster, target)
+	local sgroupid =  SGroup_CreateIfNotFound( "ig_retreatsquad" )
+	
+	if Squad_IsRetreating(target) then 
+		SGroup_Add( sgroupid, target ) 
+		Cmd_StopSquads(sgroupid)
+		SGroup_Clear(sgroupid)
+	end
+
+	return false 
+end
+
+function Skirmish_Skyleap (caster, target)
+    local sgroupid = Util_CreateGroup("eld_Autarch_Skyleap_"..tostring(World_GetPlayerIndex(Util_GetPlayerOwner(caster))), caster)    
+    local abilityID = Util_GetAbilityID("ability\\pvp\\race_eldar\\autarch\\eld_autarch_skyleap_away_execute")    
+    local randPos = Util_GetRandomPosition(sgroupid, 10, 5)
+    
+    Cmd_SquadAbilityPos(sgroupid, abilityID, randPos, true)
+	Util_GroupDelete(sgroupid)
+	
+	return false 
+end
+
+function Skirmish_Skyleap_Despawn (caster, target)
+    local sgroupid = Util_CreateGroup("eld_Autarch_Skyleap_"..tostring(World_GetPlayerIndex(Util_GetPlayerOwner(caster))), caster)    
+    local xp = 0
+	local function AddSquadXp(gid, idx, sid)
+		xp = xp + Leveling_GetSquadExperience(sid)
+	end
+	SGroup_ForEach(sgroupid, AddSquadXp)
+	
+	local xpSimVar = FamilyManager_GetFamilyIndex(TYP_SimVariable, "character_unit_xp")
+	Player_SetSimVariable(Util_GetPlayerOwner(caster), xpSimVar, xp)
+	
+	SGroup_DestroyAllSquads(sgroupid)
+	Util_GroupDelete(sgroupid)
+	
+	return false 
+end
+
+function Skirmish_Skyleap_Respawn (caster, target)
+    local sgroupid = Util_CreateGroup("eld_Autarch_Skyleap_"..tostring(World_GetPlayerIndex(Util_GetPlayerOwner(caster))), caster)    
+
+	local xpSimVar = FamilyManager_GetFamilyIndex(TYP_SimVariable, "character_unit_xp")
+	local xp = Player_GetSimVariable(Util_GetPlayerOwner(caster), xpSimVar)
+	Leveling_SetSGroupInitialExperience(sgroupid, xp)
+	
+	Util_GroupDelete(sgroupid)
+	
+	return false 
+end
+
+
+function Skirmish_IG_Inferno_Pistol_Shot(caster, target)
+    local sgroupid = Util_CreateGroup("ig_inquisitor_inferno_pistol_"..tostring(World_GetPlayerIndex(Util_GetPlayerOwner(caster))), caster)    
+    local abilityID = Util_GetAbilityID("ability\\pvp\\race_imperial_guard\\inquisitor\\ig_inquisitor_targeted_inferno_pistol_shot_final")    
+    
+    Cmd_SquadAbilityEntity(sgroupid, abilityID, target, true)
+
+	return false 
+end
+
+function Skirmish_Delete_Entity (caster, target)
+	Entity_Destroy(target)
+	return false
+end
+
+-- Go away, the star children's secrets aren't for your eyes, unbeliever. Also due to the code, sexy as it may be, not working properly in online settings, I am trialling a pure RBF version.
+
+function Skirmish_Crossfire(caster, target)
+	return false
+end
+
+function Skirmish_CommandMoveHere(caster, target)
+
+  	local sgroupid = Util_CreateGroup("ordered_mooks_"..tostring(World_GetRand(1,100000)), target )  
+
+	local pos = Entity_GetOffsetPosition(caster, 4, 4)
+
+	Cmd_Move(sgroupid, pos)
+
+	return false
+end
+
+function Skirmish_CommandMoveCasterToTarget(caster, target)
+
+  	local sgroupid = Util_CreateGroup("ordered_mooks_"..tostring(World_GetRand(1,100000)), caster )  
+
+	local pos = Entity_GetOffsetPosition(target, 4, 4)
+
+	Cmd_Move(sgroupid, pos)
+
+	return false
+end
+
+-- Smart squad transformation addendum function that gets rid of the problem that replaced squads set their 'max squad members' to whatever it is they spawned as (so enjoy your perma-2-man scout squad).
+
+function Skirmish_SetSquadMax(caster, target)
+
+	local baseline = 8
+
+	if Entity_IsOfType(Squad_EntityAt(caster,0), "ig_heavy_weapon_squad") then
+		baseline = 4
+	else
+		baseline = 8
+	end
+
+	local numEnts = 8 - Squad_Count(caster)
+	print("squad max is: "..tostring(Squad_GetMax(caster)) )
+
+	-- don't place a redundant modifier if the squad is already at max.
+	if numEnts > 0 then
+		local modifier = Modifier_Create(MAT_Squad, "modifiers\\squad_modifiers\\max_entity_loadout_nonleaders", MUT_Addition, false, numEnts, "")
+		Modifier_ApplyToSquad(modifier, caster)
+	end
+
+	return false
+end
