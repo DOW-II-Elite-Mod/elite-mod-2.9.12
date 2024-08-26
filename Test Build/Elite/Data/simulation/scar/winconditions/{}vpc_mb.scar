@@ -1,0 +1,59 @@
+import("WinCondition.scar")
+import("ScarUtil.scar")
+
+function WinCondition_OnInit()
+	WinCondition_StartupAnnihilate()
+	WinCondition_StartupVictoryPointsMB()
+
+	Annihilate_CustomRule()
+
+end
+Scar_AddInit( WinCondition_OnInit )
+
+
+
+--~ Custom annihilate rules that adjusts max cap and apply a 50% reduction in upkeep to all players
+--~ does an alternate version where the upkeep bonus is proportional to your current popcap if the 'version' var is set to "interval"
+--~    The math on that is that it applies a 'scale factor' of ( (your_current_popcap) x 0.005 ) which means that at 200 it is 1 (100%) and 100 it is 0.5 (50%).
+
+
+function Annihilate_CustomRule()
+
+	Skirmish_Start()
+
+	for i = 1, World_GetPlayerCount() do
+		local player = World_GetPlayerAt( i )
+		Player_SetMaxCapPopulation(player, CT_Personnel, 200)
+		Player_SetMaxPopulation( player, CT_Personnel, 200)
+		local modifier = Modifier_Create(MAT_Player, "modifiers\\player_modifiers\\income_upkeep_power_player_modifier", MUT_Multiplication, false, 0.5, "")
+		local modifier2 = Modifier_Create(MAT_Player, "modifiers\\player_modifiers\\income_upkeep_requisition_player_modifier", MUT_Multiplication, false, 0.25, "")
+		Modifier_ApplyToPlayer(modifier, player)
+		Modifier_ApplyToPlayer(modifier2, player)
+
+		Modify_PlayerResourceRate(player, RT_Requisition, 1.25)
+		Modify_PlayerResourceRate(player, RT_Power, 1.25)
+	end
+end
+
+function WinCondition_StartupVictoryPointsMB()
+	Skirmish_Start()
+	
+	WinCondition_VPData = {}
+
+	for i = 1, World_GetPlayerCount() do
+		local player = World_GetPlayerAt( i )
+		local teamID = Player_GetTeam( player )
+		WinCondition_VPData[ teamID + 1 ] = 
+		{
+			teamID = teamID,
+			player = player,
+			tickerValue = 750,
+			VP_held = 0,
+			all_VP_held_beats = 0,
+			warning_name = "vp_team"..tostring(teamID + 1)
+		}
+	end	
+
+	Rule_AddInterval( WinCondition_VPHeartbeat, sk_WinCondition_VPHeartbeat_interval )
+	Rule_AddInterval( WinCondition_ConcessionSuccessfulVP, sk_WinCondition_VPHeartbeat_interval )
+end

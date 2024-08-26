@@ -1,0 +1,54 @@
+import("WinCondition.scar")
+import("ScarUtil.scar")
+
+abil_pvp_gm_dev = World_GetPropertyBagGroupID("ability/pvp/game_mode_packs/game_dev_mode")
+
+function WinCondition_OnInit()
+	WinCondition_StartupAnnihilate()
+	WinCondition_StartupVictoryPointsDev()
+	Camera_SetGameplayCameraTuningValue( CGTT_MaximumDistance, 60 )
+
+	Dev_CustomRule()
+
+end
+Scar_AddInit( WinCondition_OnInit )
+
+
+
+--~ Custom VPC rules that reduces unit sight significantly
+
+function Dev_CustomRule()
+
+	Skirmish_Start()
+
+	for i = 1, World_GetPlayerCount() do
+		local player = World_GetPlayerAt( i )
+
+		Cmd_PlayerAbility(player, abil_pvp_gm_dev, true)
+
+	end
+
+end
+
+function WinCondition_StartupVictoryPointsDev()
+	Skirmish_Start()
+	
+	WinCondition_VPData = {}
+
+	for i = 1, World_GetPlayerCount() do
+		local player = World_GetPlayerAt( i )
+		local teamID = Player_GetTeam( player )
+		WinCondition_VPData[ teamID + 1 ] = 
+		{
+			teamID = teamID,
+			player = player,
+			tickerValue = 1000,
+			VP_held = 0,
+			all_VP_held_beats = 0,
+			warning_name = "vp_team"..tostring(teamID + 1)
+		}
+	end	
+
+	Rule_AddInterval( WinCondition_VPHeartbeat, sk_WinCondition_VPHeartbeat_interval )
+	Rule_AddInterval( WinCondition_ConcessionSuccessfulVP, sk_WinCondition_VPHeartbeat_interval )
+end
